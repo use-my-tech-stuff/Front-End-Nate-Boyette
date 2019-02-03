@@ -1,0 +1,308 @@
+import faker from "faker";
+const randomNumber = faker.random.number(2);
+
+export const tempItems = [
+         {
+           itemId: 1,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 2,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 3,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 4,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName,
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 5,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 6,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 7,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 8,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 9,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 10,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 11,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 12,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 13,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 14,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         },
+         {
+           itemId: 15,
+           owner: faker.random.number(10),
+           title: faker.commerce.productName(),
+           description: faker.lorem.paragraph(),
+           brand: faker.company.companyName(),
+           model: `${faker.lorem.words(1)}${faker.random.number()}`,
+           dailyPrice: faker.commerce.price(),
+           weeklyPrice: faker.finance.amount(),
+           label: faker.commerce.department(),
+           available: faker.random.boolean(),
+           renter: randomNumber === 1 ? faker.random.number(500) : false,
+           image: faker.image.technics()
+         }
+       ];
+
+export const tempUsers = [
+  {
+    userId: 1,
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber()
+  },
+  {
+    userId: 2,
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber()
+  },
+  {
+    userId: 3,
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber()
+  },
+  {
+    userId: 4,
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber()
+  },
+  {
+    userId: 5,
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber()
+  },
+  {
+    userId: 6,
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber()
+  },
+  {
+    userId: 7,
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber()
+  },
+  {
+    userId: 8,
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber()
+  },
+  {
+    userId: 9,
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber()
+  },
+  {
+    userId: 10,
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber()
+  }
+];
