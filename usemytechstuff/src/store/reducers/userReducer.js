@@ -1,7 +1,12 @@
 import { tempUsers } from "./tempData";
 
 const initialState = {
-  users: tempUsers
+  users: tempUsers,
+  userStatus: {
+    isFetchingUsers: false,
+    userFetched: false,
+    isLoggedIn: false,
+  }
 };
 
 const userReducer = (state = initialState, action) => {
