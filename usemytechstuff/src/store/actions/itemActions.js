@@ -34,9 +34,9 @@ export const getItems = () => dispatch => {
 
 // Add Item Action
 export const addItem = item => dispatch => {
-  axios
-    .post(`${baseUrl}/api/items`, item)
-    .then(res => dispatch({ type: ADD_ITEM_SUCCESS, payload: res.data }));
+  axios.post(`${baseUrl}/api/items`, item)
+    .then(res => dispatch({ type: ADD_ITEM_SUCCESS, payload: res.data }))
+    .catch(err => dispatch({type: ADD_ITEM_FAIL, payload: err}))
 };
 
 // Delete Item Action

@@ -1,25 +1,14 @@
-import React from "react"
+import React from "react";
 
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
-  Media
-} from "reactstrap";
+import { CardTitle } from "reactstrap";
 
 const ItemListHeader = props => {
-  
   const itemOwner = props.users.find(user => {
-    return user.userId === props.ownerId
+    return user.userId === props.ownerId;
+  });
+  const userName = itemOwner && itemOwner.username;
 
-  })
-  const userName = itemOwner && itemOwner.username
- 
-return <CardTitle>{`Renter: ${userName}`}</CardTitle>;
-}
+  return <CardTitle>{`Renter: ${userName}`}</CardTitle>;
+};
 
-export default ItemListHeader
+export default ItemListHeader;

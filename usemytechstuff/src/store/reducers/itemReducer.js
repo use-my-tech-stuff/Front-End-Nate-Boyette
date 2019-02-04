@@ -59,7 +59,7 @@ const itemReducer = (state = initialState, action) => {
     case FETCH_ITEMS_FAIL:
       return {
         ...state,
-        status: {
+        itemStatus: {
           ...state.itemStatus,
           isFetchingItems: true,
         },
@@ -67,13 +67,36 @@ const itemReducer = (state = initialState, action) => {
       };
 
     case ADD_ITEM_START:
-      return {};
+      return {
+        ...state,
+        itemStatus: {
+          ...state.itemStatus,
+          isAddingItem: true
+        }
+      };
 
     case ADD_ITEM_SUCCESS:
-      return {};
+      return {
+        ...state,
+        items: action.payload,
+        itemStatus: {
+          ...state.itemStatus,
+          isAddingItem: false,
+          itemAdded: true
+        },
+        error: null
+      };
 
     case ADD_ITEM_FAIL:
-      return {};
+      return {
+        ...state,
+        itemStatus: {
+          ...state.itemStatus,
+          isAddingItem: true,
+          itemAdded: false
+        },
+        error: action.payload
+      };
 
     case UPDATE_ITEM_START:
       return {};

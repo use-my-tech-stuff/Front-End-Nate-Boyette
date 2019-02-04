@@ -16,7 +16,7 @@ const ItemList = props => {
   console.log(props);
   return (
     <>
-      {props.items.map(item => {
+      {!props.items ? "Loading..." : props.items.map(item => {
         return (
           <ItemCardContainer key={item.itemId}>
             <Card>
@@ -55,7 +55,7 @@ const ItemList = props => {
 */
 
 const ItemCardContainer = styled.div`
-  width: 40%;
+  width: 45%;
   margin-top: 1%;
   margin-bottom: 1%;
   text-align: left;
