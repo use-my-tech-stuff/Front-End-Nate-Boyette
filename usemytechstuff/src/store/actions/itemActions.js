@@ -23,10 +23,13 @@ const baseUrl = `URL GOES HERE`;
 // Fetch Item Action
 export const getItems = () => dispatch => {
   dispatch({ type: FETCH_ITEMS_START });
-  axios
-    .get(`${baseUrl}/api/items`)
-    .then(res => dispatch({ type: FETCH_ITEMS_SUCCESS, payload: res.data }))
-    .catch(err => dispatch({ type: FETCH_ITEMS_FAIL, payload: err }));
+  // axios
+  //   .get(`${baseUrl}/api/items`)
+  //   .then(res => dispatch({ type: FETCH_ITEMS_SUCCESS, payload: res.data }))
+  //   .catch(err => dispatch({ type: FETCH_ITEMS_FAIL, payload: err }));
+
+  dispatch({type: FETCH_ITEMS_SUCCESS})
+
 };
 
 // Add Item Action

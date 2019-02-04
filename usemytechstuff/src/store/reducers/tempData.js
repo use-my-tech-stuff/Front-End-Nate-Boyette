@@ -14,7 +14,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 2,
@@ -28,7 +28,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 3,
@@ -42,7 +42,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 4,
@@ -56,7 +56,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 5,
@@ -70,7 +70,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 6,
@@ -84,7 +84,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 7,
@@ -98,7 +98,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 8,
@@ -112,7 +112,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 9,
@@ -126,7 +126,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 10,
@@ -140,7 +140,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 11,
@@ -154,7 +154,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 12,
@@ -168,7 +168,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 13,
@@ -182,7 +182,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 14,
@@ -196,7 +196,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          },
          {
            itemId: 15,
@@ -210,7 +210,7 @@ export const tempItems = [
            label: faker.commerce.department(),
            available: faker.random.boolean(),
            renter: randomNumber === 1 ? faker.random.number(500) : false,
-           image: faker.image.technics()
+           image: faker.random.image()
          }
        ];
 

@@ -28,19 +28,42 @@ const initialState = {
     itemUpdated: false,
     isDeletingItem: false,
     itemDeleted: false
-  }
+  },
+  error: null
 };
 
 const itemReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ITEMS_START:
-      return {};
+      return {
+        ...state,
+        status: {
+          ...state.status,
+          isFetchingItems: true
+        }
+      };
 
     case FETCH_ITEMS_SUCCESS:
-      return {};
+      return {
+        ...state,
+        status: {
+          ...state.status,
+          isFetchingItems: false,
+          itemsFetched: true,
+        },
+        error: null
+
+      };
 
     case FETCH_ITEMS_FAIL:
-      return {};
+      return {
+        ...state,
+        status: {
+          ...state.status,
+          isFetchingItems: true,
+        },
+        error: action.payload
+      };
 
     case ADD_ITEM_START:
       return {};
