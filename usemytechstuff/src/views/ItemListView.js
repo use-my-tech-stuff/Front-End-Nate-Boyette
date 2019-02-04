@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { getItems } from "../store/actions";
+import { getItems, getUsers } from "../store/actions";
 
 import ItemList from "../components/ItemList/ItemList";
 
@@ -12,6 +12,7 @@ class ItemListView extends React.Component {
 
   componentDidMount() {
     this.props.getItems();
+    this.props.getUsers();
     
   }
 
@@ -55,5 +56,5 @@ const ItemListContainer = styled.div`
 
 export default connect(
   mapStateToProps,
-  { getItems }
+  { getItems, getUsers }
 )(ItemListView);

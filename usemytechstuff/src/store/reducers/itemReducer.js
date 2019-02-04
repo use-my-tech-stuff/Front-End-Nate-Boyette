@@ -1,4 +1,4 @@
-import { tempItems } from "./tempData";
+
 
 import {
   FETCH_ITEMS_START,
@@ -18,7 +18,7 @@ import {
 
 
 const initialState = {
-  items: tempItems,
+  items: [],
   itemStatus: {
     isFetchingItems: false,
     itemsFetched: false,
@@ -37,8 +37,8 @@ const itemReducer = (state = initialState, action) => {
     case FETCH_ITEMS_START:
       return {
         ...state,
-        status: {
-          ...state.status,
+        itemStatus: {
+          ...state.itemStatus,
           isFetchingItems: true
         }
       };
@@ -46,8 +46,9 @@ const itemReducer = (state = initialState, action) => {
     case FETCH_ITEMS_SUCCESS:
       return {
         ...state,
-        status: {
-          ...state.status,
+        items: action.payload,
+        itemStatus: {
+          ...state.itemStatus,
           isFetchingItems: false,
           itemsFetched: true,
         },
@@ -59,7 +60,7 @@ const itemReducer = (state = initialState, action) => {
       return {
         ...state,
         status: {
-          ...state.status,
+          ...state.itemStatus,
           isFetchingItems: true,
         },
         error: action.payload

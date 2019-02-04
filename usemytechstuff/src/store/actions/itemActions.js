@@ -18,17 +18,17 @@ export const UPDATE_ITEM_FAIL = "UPDATE_ITEM_FAIL";
 
 export const CANCEL_ITEM_FORM = "CANCEL_ITEM_FORM";
 
-const baseUrl = `URL GOES HERE`;
+const baseUrl = `https://use-my-tech-stuff.herokuapp.com`;
 
 // Fetch Item Action
 export const getItems = () => dispatch => {
   dispatch({ type: FETCH_ITEMS_START });
-  // axios
-  //   .get(`${baseUrl}/api/items`)
-  //   .then(res => dispatch({ type: FETCH_ITEMS_SUCCESS, payload: res.data }))
-  //   .catch(err => dispatch({ type: FETCH_ITEMS_FAIL, payload: err }));
+  axios
+    .get(`${baseUrl}/api/items`)
+    .then(res => dispatch({ type: FETCH_ITEMS_SUCCESS, payload: res.data }))
+    .catch(err => dispatch({ type: FETCH_ITEMS_FAIL, payload: err }));
 
-  dispatch({type: FETCH_ITEMS_SUCCESS})
+  // dispatch({type: FETCH_ITEMS_SUCCESS})
 
 };
 

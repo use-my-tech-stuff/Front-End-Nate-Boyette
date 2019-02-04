@@ -12,15 +12,14 @@ import {
 } from "reactstrap";
 
 const ItemListHeader = props => {
-  // console.log(props)
-  const itemOwner = props.users.filter(user => {
-    if (user.userId === props.itemId){
-      return user
-    }
+  
+  const itemOwner = props.users.find(user => {
+    return user.userId === props.ownerId
+
   })
-  console.log(itemOwner)
   const userName = itemOwner && itemOwner.username
-return <CardTitle>{itemOwner.username}</CardTitle>;
+ 
+return <CardTitle>{`Renter: ${userName}`}</CardTitle>;
 }
 
 export default ItemListHeader

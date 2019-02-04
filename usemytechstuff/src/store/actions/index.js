@@ -18,4 +18,14 @@ export {
   deleteItem
 } from "./itemActions";
 
-export {} from "./userActions";
+export {
+  FETCH_USERS_START,
+  FETCH_USERS_SUCCESS,
+  FETCH_USERS_FAIL,
+  ADD_USER_START,
+  ADD_USER_SUCCESS,
+  ADD_USER_FAIL,
+  getUsers,
+  addUser,
+  loginUser
+} from "./userActions";
