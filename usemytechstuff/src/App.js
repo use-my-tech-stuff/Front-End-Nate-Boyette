@@ -7,6 +7,7 @@ import ItemListView from "./views/ItemListView";
 import LoginView from "./views/LoginView";
 import ItemView from "./views/ItemView"
 import ItemFormView from "./views/ItemFormView"
+import RegisterView from "./views/RegisterView"
 
 
 import "./App.css";
@@ -25,6 +26,7 @@ class App extends Component {
         <Route path="/item-form" component={ItemFormView} />
         <Route path="/login" component={LoginView} />
         <Route path="/item-list/:id" component={ItemView} />
+        <Route path="/register" component={RegisterView} />
       </div>
     );
   }

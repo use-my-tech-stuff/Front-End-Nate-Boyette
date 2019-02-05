@@ -4,7 +4,7 @@ import LoginPage from "../components/Login/LoginPage";
 class LoginView extends React.Component {
   state = {
     password: "",
-    userName: ""
+    username: ""
   };
 
   handleChange = e => {
@@ -23,7 +23,7 @@ class LoginView extends React.Component {
       <div>
         <LoginPage
           password={this.state.password}
-          userName={this.state.userName}
+          username={this.state.username}
           handleChange={this.handleChange}
         />
       </div>

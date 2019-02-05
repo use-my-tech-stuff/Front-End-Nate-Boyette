@@ -22,8 +22,8 @@ const LoginPage = props => {
           <Col sm={10}>
             <Input
               type="text"
-              name="userName"
-              value={props.userName}
+              name="username"
+              value={props.username}
               placeholder="Username"
               onChange={props.handleChange}
               required
