@@ -21,7 +21,7 @@ class App extends Component {
        
         <Route exact path="/" component={HomeView} />
         <Route
-          path="/item-list"
+          exact path="/item-list"
           render={props => <ItemListView {...props} />}
         />
         <Route path="/item-form" render={props => <ItemFormView {...props} />} />
@@ -29,6 +29,7 @@ class App extends Component {
         <Route path="/item-list/:id" component={ItemView} />
         <Route path="/register" component={RegisterView} />
         <Route path="/user/:id" component={UserProfileView} />
+        
       </div>
     );
   }

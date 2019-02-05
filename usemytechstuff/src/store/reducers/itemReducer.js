@@ -13,12 +13,16 @@ import {
   DELETE_ITEM_START,
   DELETE_ITEM_SUCCESS,
   DELETE_ITEM_FAIL,
-  CANCEL_ITEM_FORM
+  CANCEL_ITEM_FORM,
+  FETCH_ITEMBYID_START,
+  FETCH_ITEMBYID_SUCCESS,
+  FETCH_ITEMBYID_FAIL
 } from "../actions";
 
 
 const initialState = {
   items: [],
+  item: {},
   itemStatus: {
     isFetchingItems: false,
     itemsFetched: false,
@@ -62,6 +66,41 @@ const itemReducer = (state = initialState, action) => {
         itemStatus: {
           ...state.itemStatus,
           isFetchingItems: true,
+          itemsFetched: false
+        },
+        error: action.payload
+      };
+
+      case FETCH_ITEMBYID_START: 
+      return {
+        ...state,
+        itemStatus: {
+          ...state.itemStatus,
+          isFetchingItems: true,
+          itemsFetched: false
+        },
+        error: null
+      }
+
+      case FETCH_ITEMBYID_SUCCESS: 
+      return {
+        ...state,
+        item: action.payload,
+        itemStatus: {
+          ...state.itemStatus,
+          isFetchingItems: false,
+          itemsFetched: true
+        },
+        error: null
+      };
+      
+      case FETCH_ITEMBYID_FAIL: 
+      return {
+        ...state,
+        itemStatus: {
+          ...state.itemStatus,
+          isFetchingItems: true,
+          itemsFetched: false
         },
         error: action.payload
       };
@@ -78,6 +117,10 @@ const itemReducer = (state = initialState, action) => {
     case ADD_ITEM_SUCCESS:
       return {
         ...state,
+        items: [
+          ...state.items,
+          action.payload
+        ],
         itemStatus: {
           ...state.itemStatus,
           isAddingItem: false,

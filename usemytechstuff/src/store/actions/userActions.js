@@ -12,6 +12,8 @@ export const FETCH_ITEMSBYUSERID_START = "FETCH_ITEMBYUSERID_START";
 export const FETCH_ITEMSBYUSERID_SUCCESS = "FETCH_ITEMBYUSERID_SUCCESS";
 export const FETCH_ITEMSBYUSERID_FAIL = "FETCH_ITEMBYUSERID_FAIL";
 
+export const LOGIN_USER = "LOGIN_USER"
+
 export const ADD_USER_START = "ADD_USER_START";
 export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
 export const ADD_USER_FAIL = "ADD_USER_FAIL";
@@ -66,8 +68,19 @@ export const addUser = user => dispatch => {
 
 export const loginUser = user => dispatch => {
   
+  axios.post(`${baseUrl}/api/auth/login`, user)
+  .then(res => {
+    console.log(res.data.token)
+    localStorage.setItem('jwt', res.data.token)
+    dispatch({type: LOGIN_USER, payload: res.data})
+  
+  })
+  .catch(err => console.log(err))
   // Need to handle user login here
 }
+
+
+
 
 // // Delete User Action
 // export const deleteUser = userId => dispatch => {

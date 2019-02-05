@@ -4,6 +4,10 @@ export const FETCH_ITEMS_START = "FETCH_ITEMS_START";
 export const FETCH_ITEMS_SUCCESS = "FETCH_ITEMS_SUCCESS";
 export const FETCH_ITEMS_FAIL = "FETCH_ITEMS_FAIL";
 
+export const FETCH_ITEMBYID_START = "FETCH_ITEMBYID_START";
+export const FETCH_ITEMBYID_SUCCESS = "FETCH_ITEMBYID_SUCCESS";
+export const FETCH_ITEMBYID_FAIL = "FETCH_ITEMBYID_FAIL";
+
 export const ADD_ITEM_START = "ADD_ITEM_START";
 export const ADD_ITEM_SUCCESS = "ADD_ITEM_SUCCESS";
 export const ADD_ITEM_FAIL = "ADD_ITEM_FAIL";
@@ -31,12 +35,26 @@ export const getItems = () => dispatch => {
   // dispatch({type: FETCH_ITEMS_SUCCESS})
 };
 
+export const getItemById = itemId => dispatch => {
+  dispatch({ type: FETCH_ITEMBYID_START });
+  axios
+    .get(`${baseUrl}/api/items/${itemId}`)
+    .then(res => dispatch({ type: FETCH_ITEMBYID_SUCCESS, payload: res.data }))
+    .catch(err => dispatch({ type: FETCH_ITEMBYID_FAIL, payload: err }));
+};
+
 // Add Item Action
 export const addItem = item => dispatch => {
+  const token = localStorage.getItem("jwt");
+  const options = {
+    headers: {
+      authorization: token
+    }
+  };
+
   axios
-    .post(`${baseUrl}/api/items`, item)
+    .post(`${baseUrl}/api/items`, item, options)
     .then(res => dispatch({ type: ADD_ITEM_SUCCESS, payload: res.data.creds }))
-    // .then(res => console.log(res) )
     .catch(err => dispatch({ type: ADD_ITEM_FAIL, payload: err }));
 };
 

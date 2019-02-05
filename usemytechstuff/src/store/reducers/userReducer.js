@@ -11,8 +11,7 @@ import {
   FETCH_ITEMSBYUSERID_START,
   FETCH_ITEMSBYUSERID_SUCCESS,
   FETCH_ITEMSBYUSERID_FAIL,
-  getItemsByUserId,
-  getUserById
+  LOGIN_USER,
 } from "../actions";
 
 const initialState = {
@@ -120,6 +119,15 @@ const userReducer = (state = initialState, action) => {
         },
         error: action.payload
       };
+      case LOGIN_USER: 
+      return {
+        ...state,
+        user: action.payload,
+        userStatus: {
+          ...state.userStatus,
+          isLoggedIn: true
+        }
+      }
     case ADD_USER_START:
       return {};
     case ADD_USER_SUCCESS:

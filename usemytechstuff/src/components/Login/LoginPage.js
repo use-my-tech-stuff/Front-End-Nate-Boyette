@@ -1,5 +1,6 @@
 import React from "react";
 
+
 import {
   Button,
   Form,
@@ -14,6 +15,9 @@ import {
 import styled from "styled-components";
 
 const LoginPage = props => {
+
+  console.log(props)
+
   return (
     <FormContainer>
       <h2>Log in to AirTNT</h2>
@@ -42,7 +46,7 @@ const LoginPage = props => {
             />
           </Col>
         </FormGroup>
-        <Button color="primary">Log In</Button>
+        <Button color="primary" onClick={props.loginHandler} >Log In</Button>
       </Form>
     </FormContainer>
   );
@@ -62,5 +66,7 @@ const FormContainer = styled.div`
   box-shadow: 5px 5px 17px -4px rgba(0, 0, 0, 0.16);
   text-align: left;
 `;
+
+
 
 export default LoginPage;

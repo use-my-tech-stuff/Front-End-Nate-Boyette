@@ -1,34 +1,55 @@
 import React from "react";
 import LoginPage from "../components/Login/LoginPage";
 
+import { connect } from "react-redux";
+
+import { loginUser } from "../store/actions";
+
 class LoginView extends React.Component {
   state = {
-    password: "",
-    username: ""
+    user: {
+      password: "",
+      username: ""
+    }
   };
 
   handleChange = e => {
     const { name, value } = e.target;
 
     this.setState({
-      [name]: value
+      user: {
+        ...this.state.user,
+        [name]: value
+      }
     });
 
-    console.log(this.state)
+    console.log(this.state);
+  };
 
+  loginHandler = (e) => {
+    e.preventDefault();
+    this.props.loginUser(this.state.user);
   };
 
   render() {
     return (
       <div>
         <LoginPage
-          password={this.state.password}
-          username={this.state.username}
+          password={this.state.user.password}
+          username={this.state.user.username}
           handleChange={this.handleChange}
+          loginHandler={this.loginHandler}
         />
       </div>
     );
   }
 }
 
-export default LoginView;
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(LoginView);
