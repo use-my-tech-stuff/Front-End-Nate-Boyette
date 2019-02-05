@@ -1,24 +1,34 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { getUserById, getItemsByUserId, getItemById } from "../store/actions";
+import { getUserById, getItemsByUserId, getItemById, deleteItem } from "../store/actions";
 
-import UserProfilePage from "../components/User/UserProfilePage"
-
+import UserProfilePage from "../components/User/UserProfilePage";
 
 class UserProfileView extends React.Component {
   componentDidMount() {
-    
     // get items by userid
-    this.props.getUserById(this.props.match.params.id)
+    this.props.getUserById(this.props.match.params.id);
     this.props.getItemsByUserId(this.props.match.params.id);
   }
+
+  handleDelete = (e, itemId) => {
+    e.preventDefault();
+    this.props.deleteItem(itemId)
+  } 
 
   render() {
     // console.log(this.props)
     return (
       <div>
-        <UserProfilePage user={this.props.user} items={this.props.items} history={this.props.history} getItemById={this.props.getItemById} />
+        <UserProfilePage
+          user={this.props.user}
+          userStatus={this.props.userStatus}
+          items={this.props.items}
+          history={this.props.history}
+          getItemById={this.props.getItemById}
+          deleteItem={this.handleDelete}
+        />
       </div>
     );
   }
@@ -27,12 +37,12 @@ class UserProfileView extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
-    items: state.userReducer.items
-  }
-}
-
+    items: state.userReducer.items,
+    userStatus: state.userReducer.userStatus
+  };
+};
 
 export default connect(
   mapStateToProps,
-  { getUserById, getItemsByUserId, getItemById }
+  { getUserById, getItemsByUserId, getItemById, deleteItem }
 )(UserProfileView);

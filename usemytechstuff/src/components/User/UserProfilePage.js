@@ -1,7 +1,8 @@
 import React from "react";
 import faker from "faker";
 
-import ItemList from "../ItemList/ItemList"
+import ItemList from "../ItemList/ItemList";
+import UserItemList from "./UserItemList";
 
 import styled from "styled-components";
 import {
@@ -18,13 +19,12 @@ import {
 } from "reactstrap";
 
 const UserProfilePage = props => {
-
   // const routeToItemPage = (e, item) => {
   //   e.preventDefault();
   //   props.history.push(`/item-list/${item.itemId}`);
   //   props.getItemById(item.itemId);
-  // }; 
-  console.log(props)
+  // };
+  console.log(props);
   return (
     <>
       <UserPageContainer>
@@ -37,9 +37,12 @@ const UserProfilePage = props => {
               </ProfileAvatarContainer>
 
               <div>
-                <CardText>Items For Rent: {props.items.length !== 0 ? props.items.length : '' }</CardText>
+                <CardText>
+                  Items For Rent:{" "}
+                  {props.items.length !== 0 ? props.items.length : ""}
+                </CardText>
                 <CardText>Reviews: 156</CardText>
-                <Button>View My List</Button>
+                <Button>Edit Profile</Button>
               </div>
             </UserInfoContainer>
           </CardBody>
@@ -49,10 +52,19 @@ const UserProfilePage = props => {
         <hr />
         Items Listed
         <UserItemsContainer>
-          <ItemList items={props.items} users={props.user} history={props.history} getItemById={props.getItemById}/>
+          <UserItemList
+            items={props.items}
+            user={props.user}
+            history={props.history}
+            getItemById={props.getItemById}
+            userStatus={props.userStatus}
+            deleteItem={props.deleteItem}
+          />
         </UserItemsContainer>
       </UserItemListContainer>
     </>
+    // TODO - Bring in ItemListView instead of ItemList
+    // Will need to conditionally call getItems and getUsers on componentDidMount.
   );
 };
 
@@ -74,15 +86,15 @@ const UserPageContainer = styled.div`
 const UserInfoContainer = styled.div`
   display: flex;
   justify-content: space-between;
-`
+`;
 
 const ProfileAvatarContainer = styled.div`
   text-align: center;
-`
+`;
 
 const UserItemListContainer = styled.div`
   margin: 5% 0;
-`
+`;
 
 const UserItemsContainer = styled.div`
   display: flex;

@@ -28,7 +28,7 @@ class App extends Component {
         <Route path="/login" component={LoginView} />
         <Route path="/item-list/:id" component={ItemView} />
         <Route path="/register" component={RegisterView} />
-        <Route path="/user/:id" component={UserProfileView} />
+        <Route path="/dashboard/:id" component={UserProfileView} />
         
       </div>
     );

@@ -150,13 +150,36 @@ const itemReducer = (state = initialState, action) => {
       return {};
 
     case DELETE_ITEM_START:
-      return {};
+      return {
+        ...state,
+        itemStatus: {
+          ...state.itemStatus,
+          isDeletingItem: true
+        },
+        error: null
+      };
 
     case DELETE_ITEM_SUCCESS:
-      return {};
+      return {
+        ...state,
+        itemStatus: {
+          ...state.itemStatus,
+          isDeletingItem: false,
+          itemDeleted: true
+        },
+        error: null
+
+      };
 
     case DELETE_ITEM_FAIL:
-      return {};
+      return {
+        ...state,
+        itemStatus: {
+          isDeletingItem: true,
+          itemDeleted: false
+        },
+        error: action.payload
+      };
 
     case CANCEL_ITEM_FORM:
       return {};

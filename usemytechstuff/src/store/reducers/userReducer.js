@@ -21,7 +21,7 @@ const initialState = {
   userStatus: {
     isFetchingUsers: false,
     usersFetched: false,
-    isLoggedIn: false,
+    isLoggedIn: true,
     isFetchingItems: false,
     itemsFetched: false
   },
