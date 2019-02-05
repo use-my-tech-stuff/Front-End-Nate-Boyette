@@ -1,7 +1,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { getUserById, getItemsByUserId } from "../store/actions";
+import { getUserById, getItemsByUserId, getItemById } from "../store/actions";
 
 import UserProfilePage from "../components/User/UserProfilePage"
 
@@ -15,10 +15,10 @@ class UserProfileView extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div>
-        <UserProfilePage user={this.props.user} items={this.props.items} />
+        <UserProfilePage user={this.props.user} items={this.props.items} history={this.props.history} getItemById={this.props.getItemById} />
       </div>
     );
   }
@@ -34,5 +34,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUserById, getItemsByUserId }
+  { getUserById, getItemsByUserId, getItemById }
 )(UserProfileView);

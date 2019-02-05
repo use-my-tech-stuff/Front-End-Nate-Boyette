@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { getItems, getUsers } from "../store/actions";
+import { getItems, getUsers, getItemById } from "../store/actions";
 
 import ItemList from "../components/ItemList/ItemList";
 
@@ -29,7 +29,7 @@ class ItemListView extends React.Component {
       <>
         <h1>Item List</h1>
         <ItemListContainer>
-          <ItemList items={this.props.items} users={this.props.users} />
+          <ItemList history={this.props.history} items={this.props.items} users={this.props.users} getItemById={this.props.getItemById}/>
         </ItemListContainer>
       </>
     );
@@ -58,5 +58,5 @@ const ItemListContainer = styled.div`
 
 export default connect(
   mapStateToProps,
-  { getItems, getUsers }
+  { getItems, getUsers, getItemById }
 )(ItemListView);

@@ -18,6 +18,13 @@ import {
 } from "reactstrap";
 
 const UserProfilePage = props => {
+
+  // const routeToItemPage = (e, item) => {
+  //   e.preventDefault();
+  //   props.history.push(`/item-list/${item.itemId}`);
+  //   props.getItemById(item.itemId);
+  // }; 
+  console.log(props)
   return (
     <>
       <UserPageContainer>
@@ -30,7 +37,7 @@ const UserProfilePage = props => {
               </ProfileAvatarContainer>
 
               <div>
-                <CardText>Items Owned: 50</CardText>
+                <CardText>Items For Rent: {props.items.length !== 0 ? props.items.length : '' }</CardText>
                 <CardText>Reviews: 156</CardText>
                 <Button>View My List</Button>
               </div>
@@ -42,7 +49,7 @@ const UserProfilePage = props => {
         <hr />
         Items Listed
         <UserItemsContainer>
-          <ItemList items={props.items} users={props.user} />
+          <ItemList items={props.items} users={props.user} history={props.history} getItemById={props.getItemById}/>
         </UserItemsContainer>
       </UserItemListContainer>
     </>

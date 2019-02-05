@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import ItemListHeader from "./ItemListHeader";
 
+
+
 import {
   Card,
   CardImg,
@@ -14,7 +16,12 @@ import {
 
 const ItemList = props => {
   
-  
+  const routeToItemPage = (e, item) => {
+    e.preventDefault();
+    props.history.push(`/item-list/${item.itemId}`)
+    props.getItemById(item.itemId)
+    
+  } 
 
   return (
     <>
@@ -46,7 +53,7 @@ const ItemList = props => {
                 <CardText>
                   {item.description}
                 </CardText>
-                <Button>View Item</Button>
+                <Button onClick={e => routeToItemPage(e, item)} >View Item</Button>
               </CardBody>
             </Card>
           </ItemCardContainer>
