@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router";
+import { withRouter, Redirect } from "react-router";
 
 import {
   Button,
@@ -25,7 +25,7 @@ const ItemForm = props => {
     // If editing then update Item
     props.addItem()
     props.history.push('/item-list')
-
+    
   }
 
   // console.log(props.item)

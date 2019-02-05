@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 
 const ItemList = props => {
-  console.log(props);
+  
   
 
   return (

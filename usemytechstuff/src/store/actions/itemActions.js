@@ -35,7 +35,8 @@ export const getItems = () => dispatch => {
 export const addItem = item => dispatch => {
   axios
     .post(`${baseUrl}/api/items`, item)
-    .then(res => dispatch({ type: ADD_ITEM_SUCCESS, payload: res.data }))
+    .then(res => dispatch({ type: ADD_ITEM_SUCCESS, payload: res.data.creds }))
+    // .then(res => console.log(res) )
     .catch(err => dispatch({ type: ADD_ITEM_FAIL, payload: err }));
 };
 

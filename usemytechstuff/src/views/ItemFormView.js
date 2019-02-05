@@ -53,16 +53,16 @@ class ItemFormView extends React.Component {
     // If available === Yes ? true : false
     if (this.state.item.available === 'Yes' || this.state.item.available === '') {
       this.setState({
-        item: {
+        items: {
           ...this.state.item,
           available: true
         }
       })
+      
     }
    
-
-    console.log(this.state.item)
     this.props.addItem(this.state.item)
+    
   };
 
   render() {

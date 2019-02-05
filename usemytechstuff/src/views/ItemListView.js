@@ -13,12 +13,15 @@ class ItemListView extends React.Component {
     this.props.getUsers();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.items.length !== this.props.items.length) {
-      this.props.getItems();
-    }
-    console.log(prevProps)
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.items.length !== this.props.items.length) {
+  //     console.log(this.props.items)
+  //     console.log(prevProps.items);
+  //     this.props.getItems();
+      
+      
+  //   }
+  // }
   render() {
     console.log(this.props.items);
     
