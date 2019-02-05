@@ -5,25 +5,29 @@ import { getItems, getUsers } from "../store/actions";
 
 import ItemList from "../components/ItemList/ItemList";
 
-import styled from "styled-components"
+import styled from "styled-components";
 
 class ItemListView extends React.Component {
-  
-
   componentDidMount() {
     this.props.getItems();
     this.props.getUsers();
-    
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.items.length !== this.props.items.length) {
+      this.props.getItems();
+    }
+    console.log(prevProps)
+  }
   render() {
-   console.log(this.props)
+    console.log(this.props.items);
+    
     return (
       <>
-      <h1>Item List</h1>
-      <ItemListContainer>
-        <ItemList items={this.props.items} users={this.props.users} />
-      </ItemListContainer>
+        <h1>Item List</h1>
+        <ItemListContainer>
+          <ItemList items={this.props.items} users={this.props.users} />
+        </ItemListContainer>
       </>
     );
   }
@@ -35,9 +39,7 @@ const mapStateToProps = state => {
     items: state.itemReducer.items,
     users: state.userReducer.users
   };
-  
 };
-
 
 /* 
 ==== Component Styles ====
@@ -49,10 +51,7 @@ const ItemListContainer = styled.div`
   justify-content: space-evenly;
   width: 60%;
   margin: 2% auto;
-
-`
-
-
+`;
 
 export default connect(
   mapStateToProps,

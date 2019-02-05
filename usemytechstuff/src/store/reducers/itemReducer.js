@@ -78,7 +78,6 @@ const itemReducer = (state = initialState, action) => {
     case ADD_ITEM_SUCCESS:
       return {
         ...state,
-        items: action.payload,
         itemStatus: {
           ...state.itemStatus,
           isAddingItem: false,

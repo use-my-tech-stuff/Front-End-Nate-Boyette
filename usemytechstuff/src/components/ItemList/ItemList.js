@@ -14,9 +14,15 @@ import {
 
 const ItemList = props => {
   console.log(props);
+  
+
   return (
     <>
-      {!props.items ? "Loading..." : props.items.map(item => {
+      {
+       props.items.length === 0 ?
+    <h2>Loading Item data...</h2> : 
+  
+        props.items.map(item => {
         return (
           <ItemCardContainer key={item.itemId}>
             <Card>

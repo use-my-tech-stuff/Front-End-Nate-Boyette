@@ -29,14 +29,14 @@ export const getItems = () => dispatch => {
     .catch(err => dispatch({ type: FETCH_ITEMS_FAIL, payload: err }));
 
   // dispatch({type: FETCH_ITEMS_SUCCESS})
-
 };
 
 // Add Item Action
 export const addItem = item => dispatch => {
-  axios.post(`${baseUrl}/api/items`, item)
+  axios
+    .post(`${baseUrl}/api/items`, item)
     .then(res => dispatch({ type: ADD_ITEM_SUCCESS, payload: res.data }))
-    .catch(err => dispatch({type: ADD_ITEM_FAIL, payload: err}))
+    .catch(err => dispatch({ type: ADD_ITEM_FAIL, payload: err }));
 };
 
 // Delete Item Action

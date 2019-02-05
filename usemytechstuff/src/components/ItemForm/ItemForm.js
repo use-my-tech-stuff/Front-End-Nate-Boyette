@@ -19,7 +19,7 @@ import styled from "styled-components";
 const ItemForm = props => {
 
   const handleClick = e => {
-    e.preventDefault();
+    // e.preventDefault();
 
     // Will need to check against editing status
     // If editing then update Item
@@ -32,7 +32,7 @@ const ItemForm = props => {
   return (
     <FormContainer>
       <h2>Add An Item</h2>
-      <Form>
+      <Form action=''>
         <FormGroup row>
           <Label for="itemTitle" sm={2}>
             Title

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { addItem, getItems } from "../store/actions";
 
 const emptyItem = {
-  itemId: null,
+  itemId: "",
   owner: 1,
   title: "",
   description: "",
@@ -20,7 +20,18 @@ const emptyItem = {
 
 class ItemFormView extends React.Component {
   state = {
-    item: emptyItem
+    item: {
+      owner: 1,
+      title: "",
+      description: "",
+      brand: "",
+      model: "",
+      label: "",
+      dailyPrice: "",
+      weeklyPrice: "",
+      available: true,
+      renter: 2
+    }
   };
 
   componentDidMount() {
@@ -40,30 +51,22 @@ class ItemFormView extends React.Component {
 
   addItem = () => {
     // If available === Yes ? true : false
-    this.state.available === "Yes"
-      ? this.setState({
-          item: {
-            ...this.setState,
-            available: true
-          }
-        })
-      : this.setState({
-          item: {
-            ...this.setState,
-            available: false
-          }
-        });
+    if (this.state.item.available === 'Yes' || this.state.item.available === '') {
+      this.setState({
+        item: {
+          ...this.state.item,
+          available: true
+        }
+      })
+    }
+   
 
-    this.setState({
-      ...this.state.item,
-      itemId: this.props.itemData.length - 1
-    });
-
-    this.props.addItem(this.state.item);
+    console.log(this.state.item)
+    this.props.addItem(this.state.item)
   };
 
   render() {
-    console.log((this.props.itemData.length - 1) + 1);
+    console.log(this.props.dataLength);
     return (
       <ItemForm
         item={this.state.item}
@@ -75,8 +78,10 @@ class ItemFormView extends React.Component {
 }
 
 const mapStateToProps = state => {
-  
-  return { itemData: state.itemReducer.items };
+  return {
+    itemData: state.itemReducer.items,
+    dataLength: state.itemReducer.items.length
+  };
 };
 
 export default connect(
