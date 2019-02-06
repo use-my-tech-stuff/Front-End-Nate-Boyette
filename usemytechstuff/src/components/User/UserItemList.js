@@ -64,7 +64,7 @@ const ItemList = props => {
                     <Button onClick={e => routeToItemPage(e, item)}>
                       View Item
                     </Button>
-                    {props.userStatus.isLoggedIn && (
+                    {localStorage.getItem('jwt') && (
                       <>
                         <Button>Edit</Button>
                         <Button color="danger" onClick={e => props.deleteItem(e, item.itemId)}>Delete</Button>

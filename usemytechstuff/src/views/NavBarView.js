@@ -1,19 +1,31 @@
-import React from "react"
+import React from "react";
 
-import NavBar from "../components/NavBar/NavBar"
+import NavBar from "../components/NavBar/NavBar";
 
-import {withRouter} from "react-router"
+import { withRouter } from "react-router";
+
+import { connect } from "react-redux";
+
+import { logOut } from "../store/actions";
 
 class NavBarView extends React.Component {
-  render(){
-    console.log(this.props)
+  
+  userLogOut = e => {
+    this.props.logOut()
+  }
+  
+  render() {
+    console.log(this.props);
     // console.log(localStorage)
     return (
       <>
-        <NavBar />
+        <NavBar userLogOut={this.userLogOut} />
       </>
-    )
+    );
   }
 }
 
-export default withRouter(NavBarView)
+export default connect(
+  null,
+  {logOut}
+)(withRouter(NavBarView));

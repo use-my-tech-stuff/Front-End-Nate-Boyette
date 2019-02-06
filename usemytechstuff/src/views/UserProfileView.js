@@ -11,6 +11,7 @@ import {
 import UserProfilePage from "../components/User/UserProfilePage";
 
 class UserProfileView extends React.Component {
+  
   componentDidMount() {
     // get items by userid
     this.props.getUserById(this.props.match.params.id);
@@ -27,10 +28,17 @@ class UserProfileView extends React.Component {
       this.props.getUserById(this.props.match.params.id);
       this.props.getItemsByUserId(this.props.match.params.id)
     }
+
+    if (prevProps.itemAdded !== this.props.itemAdded) {
+      this.props.getUserById(this.props.match.params.id);
+      this.props.getItemsByUserId(this.props.match.params.id);
+    }
+
   }
 
   render() {
     console.log('params.id', this.props.match.params.id);
+    console.log(this.props.userStatus.isLoggedIn)
     return (
       <div>
         <UserProfilePage
@@ -52,7 +60,8 @@ const mapStateToProps = state => {
     items: state.userReducer.items,
     itemStatus: state.userReducer.items,
     userStatus: state.userReducer.userStatus,
-    itemDeleted: state.itemReducer.itemStatus.itemDeleted
+    itemDeleted: state.itemReducer.itemStatus.itemDeleted,
+    itemAdded: state.itemReducer.itemStatus.itemAdded
   };
 };
 

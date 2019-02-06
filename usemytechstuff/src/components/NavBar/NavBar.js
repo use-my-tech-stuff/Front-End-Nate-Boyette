@@ -33,19 +33,19 @@ export default class NavBar extends React.Component {
     const userId = localStorage.getItem("userId");
     return (
       <>
-        <Navbar color="light" light expand="md" sticky='top'>
+        <Navbar color="light" light expand="md" sticky="top">
           <NavbarBrand href="/">Tech Plum</NavbarBrand>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link to="/item-list">View Items</Link>
-              </NavItem>
-              <NavItem>
-                <Link to={`/dashboard/${userId}`}>
-                Profile
-                </Link>
-              </NavItem>
-            </Nav>
-          
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <Link to="/item-list">View Items</Link>
+            </NavItem>
+            <NavItem>
+              <Link to={`/dashboard/${userId}`}>Profile</Link>
+            </NavItem>
+            <NavItem onClick={this.props.userLogOut}>
+              <Link to={`/login`}>Log Out</Link>
+            </NavItem>
+          </Nav>
         </Navbar>
       </>
     );

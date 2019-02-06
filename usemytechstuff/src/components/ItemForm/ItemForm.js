@@ -24,7 +24,7 @@ const ItemForm = props => {
     // Will need to check against editing status
     // If editing then update Item
     props.addItem()
-    props.history.push('/item-list')
+    props.history.push(`/dashboard/${localStorage.getItem('userId')}`)
     
   }
 

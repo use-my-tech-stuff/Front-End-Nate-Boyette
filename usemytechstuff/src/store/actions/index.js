@@ -45,5 +45,6 @@ export {
   getUserById,
   getUsers,
   addUser,
-  registerUser
+  registerUser,
+  logOut
 } from "./userActions";
