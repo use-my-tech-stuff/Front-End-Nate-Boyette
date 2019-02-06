@@ -117,10 +117,7 @@ const itemReducer = (state = initialState, action) => {
     case ADD_ITEM_SUCCESS:
       return {
         ...state,
-        items: [
-          ...state.items,
-          action.payload
-        ],
+        items: action.payload,
         itemStatus: {
           ...state.itemStatus,
           isAddingItem: false,
@@ -154,7 +151,8 @@ const itemReducer = (state = initialState, action) => {
         ...state,
         itemStatus: {
           ...state.itemStatus,
-          isDeletingItem: true
+          isDeletingItem: true,
+          itemDeleted: false
         },
         error: null
       };
@@ -162,13 +160,13 @@ const itemReducer = (state = initialState, action) => {
     case DELETE_ITEM_SUCCESS:
       return {
         ...state,
+        items: state.items.filter(item => item.itemId !== action.payload),
         itemStatus: {
           ...state.itemStatus,
           isDeletingItem: false,
           itemDeleted: true
         },
         error: null
-
       };
 
     case DELETE_ITEM_FAIL:

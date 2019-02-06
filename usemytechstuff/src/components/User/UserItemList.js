@@ -20,7 +20,7 @@ const ItemList = props => {
     props.getItemById(item.itemId);
   };
 
-  console.log(props);
+  // console.log(props);
   return (
     <>
       {props.items.length === 0 ? (
@@ -29,7 +29,7 @@ const ItemList = props => {
         props.items.map(item => {
           return (
             <ItemCardContainer key={item.itemId}>
-              <h1>User Item List</h1>
+              
               <Card>
                 <UserInfoContainer>
                   <ProfileAvatarContainer>

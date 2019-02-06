@@ -24,7 +24,7 @@ const UserProfilePage = props => {
   //   props.history.push(`/item-list/${item.itemId}`);
   //   props.getItemById(item.itemId);
   // };
-  console.log(props);
+  // console.log(props);
   return (
     <>
       <UserPageContainer>

@@ -23,12 +23,15 @@ class LoginView extends React.Component {
       }
     });
 
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   loginHandler = (e) => {
     e.preventDefault();
+    this.props.history.push(`/item-list`);
     this.props.loginUser(this.state.user);
+    console.log(this.props.history)
+    
   };
 
   render() {

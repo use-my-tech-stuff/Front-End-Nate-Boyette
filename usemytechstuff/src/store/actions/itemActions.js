@@ -53,8 +53,11 @@ export const addItem = item => dispatch => {
   };
 
   axios
-    .post(`${baseUrl}/api/items`, item, options)
-    .then(res => dispatch({ type: ADD_ITEM_SUCCESS, payload: res.data.creds }))
+    .post(`${baseUrl}/api/items`, item)
+    .then(res => {
+      console.log(res)  
+      dispatch({ type: ADD_ITEM_SUCCESS, payload: res.data.items })
+    })
     .catch(err => dispatch({ type: ADD_ITEM_FAIL, payload: err }));
 };
 
@@ -63,8 +66,13 @@ export const deleteItem = id => dispatch => {
   dispatch({ type: DELETE_ITEM_START });
   axios
     .delete(`${baseUrl}/api/items/${id}`)
-    .then(res => dispatch({ type: DELETE_ITEM_SUCCESS, payload: res.data }))
+    .then(res => {
+      console.log(res)
+      dispatch({ type: DELETE_ITEM_SUCCESS, payload: res.data })
+    })
     .catch(err => dispatch({ type: DELETE_ITEM_FAIL, payload: err }));
+
+    
 };
 
 // Update Item Action

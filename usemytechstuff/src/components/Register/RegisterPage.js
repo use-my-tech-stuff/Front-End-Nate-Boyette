@@ -99,7 +99,7 @@ const RegisterPage = props => {
             />
           </Col>
         </FormGroup>
-        <Button color="primary">Register</Button>
+        <Button color="primary" onClick={props.registerUser}>Register</Button>
       </Form>
     </FormContainer>
   );

@@ -13,6 +13,11 @@ export const FETCH_ITEMSBYUSERID_SUCCESS = "FETCH_ITEMBYUSERID_SUCCESS";
 export const FETCH_ITEMSBYUSERID_FAIL = "FETCH_ITEMBYUSERID_FAIL";
 
 export const LOGIN_USER = "LOGIN_USER"
+export const LOGOUT_USER = "LOGOUT_USER"
+
+export const REGISTER_USER_START = "REGISTER_USER_START"; 
+export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
+export const REGISTER_USER_FAIL = "REGISTER_USER_FAIL";
 
 export const ADD_USER_START = "ADD_USER_START";
 export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
@@ -70,17 +75,31 @@ export const loginUser = user => dispatch => {
   
   axios.post(`${baseUrl}/api/auth/login`, user)
   .then(res => {
-    console.log(res.data.token)
     localStorage.setItem('jwt', res.data.token)
-    dispatch({type: LOGIN_USER, payload: res.data})
-  
+    localStorage.setItem('userId', res.data.userId)
+    dispatch({type: REGISTER_USER_SUCCESS})
   })
   .catch(err => console.log(err))
   // Need to handle user login here
 }
 
+export const logOut = () => dispatch => {
+  localStorage.removeItem('jwt')
+  localStorage.removeItem('userId')
+  dispatch({ type: LOGOUT_USER})
+}
 
 
+export const registerUser = user => dispatch => {
+  dispatch({type: REGISTER_USER_START})
+  axios.post(`${baseUrl}/api/auth/register`, user)
+    .then(res => {
+      localStorage.setItem('jwt', res.data.token)
+      localStorage.setItem('userId', res.data.userId)
+      dispatch({ type: REGISTER_USER_SUCCESS })
+    })
+    .catch(err => dispatch({type: REGISTER_USER_FAIL, payload: err}))
+}
 
 // // Delete User Action
 // export const deleteUser = userId => dispatch => {

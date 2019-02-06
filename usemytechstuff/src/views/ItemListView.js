@@ -28,15 +28,18 @@ class ItemListView extends React.Component {
     return (
       <>
         <h1>Item List</h1>
-        <ItemListContainer>
-          <ItemList
-            history={this.props.history}
-            items={this.props.items}
-            users={this.props.users}
-            getItemById={this.props.getItemById}
-            userStatus={this.props.userStatus}
-          />
-        </ItemListContainer>
+        { this.props.itemStatus.isFetchingItems ? <h1>Loading Data</h1> :
+          <ItemListContainer>
+            <ItemList
+              history={this.props.history}
+              items={this.props.items}
+              users={this.props.users}
+              getItemById={this.props.getItemById}
+              userStatus={this.props.userStatus}
+              itemStatus={this.props.itemStatus}
+            />
+          </ItemListContainer>
+        }
       </>
     );
   }
@@ -46,6 +49,7 @@ const mapStateToProps = state => {
   // console.log(state.itemReducer.items)
   return {
     items: state.itemReducer.items,
+    itemStatus: state.itemReducer.itemStatus,
     users: state.userReducer.users,
     userStatus: state.userReducer.userStatus
   };

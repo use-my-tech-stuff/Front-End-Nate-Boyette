@@ -1,7 +1,12 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { getUserById, getItemsByUserId, getItemById, deleteItem } from "../store/actions";
+import {
+  getUserById,
+  getItemsByUserId,
+  getItemById,
+  deleteItem
+} from "../store/actions";
 
 import UserProfilePage from "../components/User/UserProfilePage";
 
@@ -14,11 +19,18 @@ class UserProfileView extends React.Component {
 
   handleDelete = (e, itemId) => {
     e.preventDefault();
-    this.props.deleteItem(itemId)
-  } 
+    this.props.deleteItem(itemId);
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.itemDeleted !== this.props.itemDeleted) {
+      this.props.getUserById(this.props.match.params.id);
+      this.props.getItemsByUserId(this.props.match.params.id)
+    }
+  }
 
   render() {
-    // console.log(this.props)
+    console.log('params.id', this.props.match.params.id);
     return (
       <div>
         <UserProfilePage
@@ -38,7 +50,9 @@ const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
     items: state.userReducer.items,
-    userStatus: state.userReducer.userStatus
+    itemStatus: state.userReducer.items,
+    userStatus: state.userReducer.userStatus,
+    itemDeleted: state.itemReducer.itemStatus.itemDeleted
   };
 };
 

@@ -21,10 +21,7 @@ const ItemList = props => {
 
   return (
     <>
-      {props.items.length === 0 ? (
-        <h2>Loading Item data...</h2>
-      ) : (
-        props.items.map(item => {
+      { props.items.map(item => {
           return (
             <ItemCardContainer key={item.itemId}>
               <Card>
@@ -54,7 +51,7 @@ const ItemList = props => {
             </ItemCardContainer>
           );
         })
-      )}
+      }
     </>
   );
 };

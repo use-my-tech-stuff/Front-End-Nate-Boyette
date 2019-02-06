@@ -36,9 +36,14 @@ export {
   FETCH_ITEMSBYUSERID_SUCCESS,
   FETCH_ITEMSBYUSERID_FAIL,
   LOGIN_USER,
+  LOGOUT_USER,
+  REGISTER_USER_START,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAIL,
   loginUser,
   getItemsByUserId,
   getUserById,
   getUsers,
   addUser,
+  registerUser
 } from "./userActions";
