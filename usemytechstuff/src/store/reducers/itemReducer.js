@@ -117,7 +117,7 @@ const itemReducer = (state = initialState, action) => {
     case ADD_ITEM_SUCCESS:
       return {
         ...state,
-        items: action.payload,
+        items: action.payload.items,
         itemStatus: {
           ...state.itemStatus,
           isAddingItem: false,
@@ -138,10 +138,25 @@ const itemReducer = (state = initialState, action) => {
       };
 
     case UPDATE_ITEM_START:
-      return {};
+      return {
+        ...state,
+        itemStatus: {
+          ...state.itemStatus,
+          isUpdatingItem: true
+        },
+        error: null
+      };
 
     case UPDATE_ITEM_SUCCESS:
-      return {};
+      return {
+        ...state,
+        items: action.payload,
+        itemStatus: {
+          ...state.itemStatus,
+          isUpdatingItem: false
+        },
+        error: null
+      };
 
     case UPDATE_ITEM_FAIL:
       return {};

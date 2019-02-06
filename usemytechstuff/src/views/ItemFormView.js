@@ -2,21 +2,8 @@ import React from "react";
 
 import ItemForm from "../components/ItemForm/ItemForm";
 import { connect } from "react-redux";
-import { addItem, getItems } from "../store/actions";
+import { addItem, getItems, updateItem } from "../store/actions";
 
-const emptyItem = {
-  itemId: "",
-  owner: 1,
-  title: "",
-  description: "",
-  brand: "",
-  model: "",
-  label: "",
-  dailyPrice: "",
-  weeklyPrice: "",
-  available: "",
-  renter: 2
-};
 
 class ItemFormView extends React.Component {
   state = {
@@ -29,13 +16,21 @@ class ItemFormView extends React.Component {
       label: "",
       dailyPrice: "",
       weeklyPrice: "",
-      available: '',
-      renter: ''
-    }
+      available: true,
+      renter: 1
+    },
+    editItem: {},
+    isEditing: false
   };
 
   componentDidMount() {
     this.props.getItems();
+    if (localStorage.getItem('editItem')) {
+      this.setState({
+        item: JSON.parse(localStorage.getItem('editItem')),
+        isEditing: true
+      })
+    }
   }
 
   handleChange = e => {
@@ -67,19 +62,39 @@ class ItemFormView extends React.Component {
         owner: localStorage.getItem('userId')
       }
     })
+
+    console.log(this.state.item)
    
     this.props.addItem(this.state.item)
     
   };
 
+
+  updateItem = () => {
+    this.props.updateItem(this.state.item.itemId, this.state.item)
+    this.setState({
+      isEditing: false
+    })
+    localStorage.removeItem('editItem');
+    localStorage.removeItem('editItemId');
+  }
+
+  cancelForm = () => [
+
+  ]
+
   render() {
     console.log(this.state.item)
-    console.log(localStorage.getItem('userId'));
+
+    // console.log(this.state.item)
+    // console.log(localStorage.getItem('userId'));
     return (
       <ItemForm
         item={this.state.item}
         handleChange={this.handleChange}
         addItem={this.addItem}
+        updateItem={this.updateItem}
+        isEditing={this.state.isEditing}
       />
     );
   }
@@ -94,5 +109,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addItem, getItems }
+  { addItem, getItems, updateItem }
 )(ItemFormView);

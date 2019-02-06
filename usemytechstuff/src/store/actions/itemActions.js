@@ -51,12 +51,14 @@ export const addItem = item => dispatch => {
       authorization: token
     }
   };
-
+dispatch({type: ADD_ITEM_START})
+  console.log('itemToAdd', item)
   axios
     .post(`${baseUrl}/api/items`, item)
     .then(res => {
-      console.log(res)  
-      dispatch({ type: ADD_ITEM_SUCCESS, payload: res.data.items })
+      
+      console.log('addItem', res.data)  
+      dispatch({ type: ADD_ITEM_SUCCESS, payload: res.data })
     })
     .catch(err => dispatch({ type: ADD_ITEM_FAIL, payload: err }));
 };
@@ -79,8 +81,15 @@ export const deleteItem = id => dispatch => {
 export const updateItem = (itemId, item) => dispatch => {
   dispatch({ type: UPDATE_ITEM_START });
   axios
-    .post(`${baseUrl}/api/items/${itemId}`, item)
-    .then(res => dispatch({ type: UPDATE_ITEM_SUCCESS, payload: res.data }))
+    .patch(`${baseUrl}/api/items/${itemId}`, item)
+    .then(res => {
+      console.log(res)
+      axios
+        .get(`${baseUrl}/api/items`)
+        .then(res => dispatch({ type: UPDATE_ITEM_SUCCESS, payload: res.data }))
+        .catch(err => dispatch({ type: FETCH_ITEMS_FAIL, payload: err }));
+    
+    })
     .catch(err => dispatch({ type: UPDATE_ITEM_FAIL, payload: err }));
 };
 

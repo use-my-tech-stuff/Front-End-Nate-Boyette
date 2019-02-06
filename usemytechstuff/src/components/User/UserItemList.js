@@ -66,7 +66,11 @@ const ItemList = props => {
                     </Button>
                     {localStorage.getItem('jwt') && (
                       <>
-                        <Button>Edit</Button>
+                        <Button onClick={e => {
+                          props.updateItem(e, item)
+                          console.log(item)
+                          props.history.push(`/item-form`)
+                        }}>Edit</Button>
                         <Button color="danger" onClick={e => props.deleteItem(e, item.itemId)}>Delete</Button>
                       </>
                     )}
@@ -90,6 +94,9 @@ const ItemCardContainer = styled.div`
   margin-top: 1%;
   margin-bottom: 1%;
   text-align: left;
+
+  
+
 `;
 
 const ItemButtonContainer = styled.div`

@@ -1,7 +1,7 @@
 import React from "react";
 import faker from "faker";
 
-import ItemList from "../ItemList/ItemList";
+
 import UserItemList from "./UserItemList";
 
 import styled from "styled-components";
@@ -21,6 +21,8 @@ import {
 const UserProfilePage = props => {
   const routeToFormPage = (e, item) => {
     e.preventDefault();
+    localStorage.removeItem('editItem')
+    localStorage.removeItem('editItemId')
     props.history.push(`/item-form/`);
   };
   // console.log(props);
@@ -43,7 +45,7 @@ const UserProfilePage = props => {
                 <CardText>Reviews: 156</CardText>
                 <ButtonContainer>
                   <Button size='sm' onClick={routeToFormPage}>Add Item</Button>
-                  <Button size="sm">Edit Profile</Button>
+                  <Button size="sm">View Rentals</Button>
                 </ButtonContainer>                
               </JustInfoContainer>
             </UserInfoContainer>
@@ -61,6 +63,7 @@ const UserProfilePage = props => {
             getItemById={props.getItemById}
             userStatus={props.userStatus}
             deleteItem={props.deleteItem}
+            updateItem={props.updateItem}
           />
         </UserItemsContainer>
       </UserItemListContainer>

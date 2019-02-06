@@ -32,13 +32,13 @@ class Item extends React.Component {
 // User info accessible, add and format any data necessry
   render() {
     console.log(this.props);
+    const userId = Number(localStorage.getItem('userId'))
+    
     return (
-      
-      
       <ItemCardContainer>
         <Card>
           <CardBody>
-            <ItemProfileHeaderCont> 
+            <ItemProfileHeaderCont>
               <ProfileImage src={faker.image.avatar()} />
               <CardTitle>{this.props.user.username}</CardTitle>
             </ItemProfileHeaderCont>
@@ -65,8 +65,12 @@ class Item extends React.Component {
               this.props.item.weeklyPrice
             } / week`}</CardSubtitle>
             <CardText>{this.props.item.description}</CardText>
-            <CardText>Available: {this.props.item.available === 1 ? "Yes" : "No"}</CardText>
-            <Button>Request Rental</Button>
+            <CardText>
+              Available: {this.props.item.available === 1 ? "Yes" : "No"}
+            </CardText>
+            {userId === this.props.item.owner ? null : (
+              <Button>Request Rental</Button>
+            )}
           </CardBody>
         </Card>
       </ItemCardContainer>

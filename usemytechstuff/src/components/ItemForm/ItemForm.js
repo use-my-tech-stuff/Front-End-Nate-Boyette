@@ -23,15 +23,22 @@ const ItemForm = props => {
 
     // Will need to check against editing status
     // If editing then update Item
-    props.addItem()
+    if (props.isEditing) {
+      props.updateItem();
+    } else {
+      props.addItem()
+    }
+    
     props.history.push(`/dashboard/${localStorage.getItem('userId')}`)
     
   }
 
+  
+
   // console.log(props.item)
   return (
     <FormContainer>
-      <h2>Add An Item</h2>
+      {props.isEditing ? <h1>Edit Item</h1> : <h2>Add An Item</h2>}
       <Form action=''>
         <FormGroup row>
           <Label for="itemTitle" sm={2}>
@@ -87,19 +94,18 @@ const ItemForm = props => {
           </Label>
           <Col sm={10}>
             <Input
-              type="select"
+              type="text"
               name="label"
               id="itemCategory"
+              placeholder='Enter a Category'
               value={props.item.label}
               onChange={props.handleChange}
               required
-            >
-              <option>Speaker</option>
-              <option>Display</option>
-              <option>Monitor</option>
-              <option>Camera</option>
-              <option>Karaoke</option>
-            </Input>
+            
+
+            />
+        
+            
           </Col>
         </FormGroup>
         <FormGroup row>
@@ -157,24 +163,6 @@ const ItemForm = props => {
               />
               <InputGroupAddon addonType="append">.00</InputGroupAddon>
             </InputGroup>
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Label for="itemAvailability" sm={2}>
-            Available?
-          </Label>
-          <Col sm={10}>
-            <Input
-              type="select"
-              name="available"
-              value={props.item.available}
-              id="itemAvailability"
-              onChange={props.handleChange}
-              required
-            >
-              <option>Yes</option>
-              <option>No</option>
-            </Input>
           </Col>
         </FormGroup>
         <FormGroup row />

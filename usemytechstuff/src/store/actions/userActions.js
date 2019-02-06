@@ -84,8 +84,9 @@ export const loginUser = user => dispatch => {
 }
 
 export const logOut = () => dispatch => {
-  localStorage.removeItem('jwt')
-  localStorage.removeItem('userId')
+  // localStorage.removeItem('jwt')
+  // localStorage.removeItem('userId')
+  localStorage.clear();
   dispatch({ type: LOGOUT_USER})
 }
 

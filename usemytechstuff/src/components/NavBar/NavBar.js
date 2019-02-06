@@ -19,15 +19,7 @@ export default class NavBar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+   
   }
   render() {
     const userId = localStorage.getItem("userId");
@@ -39,8 +31,8 @@ export default class NavBar extends React.Component {
             <NavItem>
               <Link to="/item-list">View Items</Link>
             </NavItem>
-            <NavItem>
-              <Link to={`/dashboard/${userId}`}>Profile</Link>
+            <NavItem onClick={this.props.routeToDashboard}>
+              <NavLink href="">Profile</NavLink>
             </NavItem>
             <NavItem onClick={this.props.userLogOut}>
               <Link to={`/login`}>Log Out</Link>
