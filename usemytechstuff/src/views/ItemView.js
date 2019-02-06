@@ -9,7 +9,7 @@ class ItemView extends React.Component {
   componentDidMount() {
     this.props.getItemById(this.props.match.params.id);
 
-    
+   
   }
 
   render() {

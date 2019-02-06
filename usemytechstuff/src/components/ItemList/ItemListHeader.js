@@ -3,7 +3,7 @@ import React from "react";
 import { CardTitle } from "reactstrap";
 
 const ItemListHeader = props => {
-  console.log(props.users)
+  // console.log(props.users)
   
   // Checks if users is more than one, or more specifically getting it's data
   // from the ItemListView. If so it .find() to get the right item owner

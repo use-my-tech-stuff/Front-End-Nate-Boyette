@@ -21,7 +21,7 @@ const emptyItem = {
 class ItemFormView extends React.Component {
   state = {
     item: {
-      owner: 1,
+      owner: localStorage.getItem('userId'),
       title: "",
       description: "",
       brand: "",
@@ -29,8 +29,8 @@ class ItemFormView extends React.Component {
       label: "",
       dailyPrice: "",
       weeklyPrice: "",
-      available: true,
-      renter: 2
+      available: '',
+      renter: ''
     }
   };
 
@@ -60,13 +60,21 @@ class ItemFormView extends React.Component {
       })
       
     }
+
+    this.setState({
+      item: {
+        ...this.state.item,
+        owner: localStorage.getItem('userId')
+      }
+    })
    
     this.props.addItem(this.state.item)
     
   };
 
   render() {
-    console.log(this.props.dataLength);
+    console.log(this.state.item)
+    console.log(localStorage.getItem('userId'));
     return (
       <ItemForm
         item={this.state.item}

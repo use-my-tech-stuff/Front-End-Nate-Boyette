@@ -19,11 +19,10 @@ import {
 } from "reactstrap";
 
 const UserProfilePage = props => {
-  // const routeToItemPage = (e, item) => {
-  //   e.preventDefault();
-  //   props.history.push(`/item-list/${item.itemId}`);
-  //   props.getItemById(item.itemId);
-  // };
+  const routeToFormPage = (e, item) => {
+    e.preventDefault();
+    props.history.push(`/item-form/`);
+  };
   // console.log(props);
   return (
     <>
@@ -36,21 +35,24 @@ const UserProfilePage = props => {
                 <CardTitle>{props.user.username}</CardTitle>
               </ProfileAvatarContainer>
 
-              <div>
+              <JustInfoContainer>
                 <CardText>
                   Items For Rent:{" "}
                   {props.items.length !== 0 ? props.items.length : ""}
                 </CardText>
                 <CardText>Reviews: 156</CardText>
-                <Button>Edit Profile</Button>
-              </div>
+                <ButtonContainer>
+                  <Button size='sm' onClick={routeToFormPage}>Add Item</Button>
+                  <Button size="sm">Edit Profile</Button>
+                </ButtonContainer>                
+              </JustInfoContainer>
             </UserInfoContainer>
           </CardBody>
         </Card>
       </UserPageContainer>
       <UserItemListContainer>
         <hr />
-        Items Listed
+        
         <UserItemsContainer>
           <UserItemList
             items={props.items}
@@ -73,7 +75,7 @@ const UserProfilePage = props => {
 */
 
 const UserPageContainer = styled.div`
-  max-width: 350px;
+  max-width: 400px;
   margin: 5% auto 0;
   ${"" /* padding: 50px; */}
   ${"" /* border: 1px solid lightgrey; */}
@@ -87,6 +89,10 @@ const UserInfoContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+const JustInfoContainer = styled.div`
+  width: 50%;
+`
 
 const ProfileAvatarContainer = styled.div`
   text-align: center;
@@ -103,6 +109,11 @@ const UserItemsContainer = styled.div`
   width: 60%;
   margin: 2% auto;
 `;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 
 const ProfileImage = styled.img`
   border-radius: 100px;

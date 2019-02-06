@@ -9,7 +9,7 @@ import ItemView from "./views/ItemView"
 import ItemFormView from "./views/ItemFormView"
 import RegisterView from "./views/RegisterView"
 import UserProfileView from "./views/UserProfileView"
-
+import NavBarView from "./views/NavBarView"
 
 import "./App.css";
 
@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <div className="App">
         
-       
+        <NavBarView />
         <Route exact path="/" component={HomeView} />
         <Route
           exact path="/item-list"
