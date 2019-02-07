@@ -14,15 +14,17 @@ class ItemView extends React.Component {
     this.props.getItemById(this.props.match.params.id);
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.item.renter !== this.props.item.renter) {
-  //     this.props.getItemById(this.props.match.params.id)
-      
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    if (prevProps.itemStatus.itemUpdated !== this.props.itemStatus.itemUpdated) {
+      this.props.getItemById(this.props.match.params.id)
+      console.log('CDU IF FIRED')
+    }
+    this.props.getItemById(this.props.match.params.id);
+    console.log("CDU FIRED")
+  }
 
-  rentItem = (e) => {
-    e.preventDefault();
+  rentItem = () => {
+    
     const userId = localStorage.getItem('userId')
 
 
@@ -34,8 +36,8 @@ class ItemView extends React.Component {
 
     // console.log('RENTED ITEM', rentedItem)
     this.props.rentItem(this.props.item.itemId, rentedItem)
-
-    this.props.getItemById(this.props.match.params.id);
+    window.location.reload();
+    // this.props.getItemById(this.props.match.params.id);
   };
   
   
@@ -49,7 +51,7 @@ class ItemView extends React.Component {
         this.props.itemStatus.isFetchingItems === true ? (
           <h1>Loading...</h1>
         ) : (
-          <Item item={this.props.item} rentItem={this.rentItem} />
+          <Item item={this.props.item} rentItem={this.rentItem} history={this.props.history} />
         )}
       </div>
     );

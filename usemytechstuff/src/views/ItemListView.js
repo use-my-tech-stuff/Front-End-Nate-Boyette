@@ -15,11 +15,10 @@ class ItemListView extends React.Component {
   }
 
   // componentDidUpdate(prevProps) {
-  //   if (prevProps.items.length !== this.props.items.length) {
+  //   if (prevProps.items !== this.props.items) {
   //     console.log(this.props.items)
   //     console.log(prevProps.items);
   //     this.props.getItems();
-
   //   }
   // }
   render() {

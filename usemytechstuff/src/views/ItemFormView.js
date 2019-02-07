@@ -103,6 +103,11 @@ class ItemFormView extends React.Component {
   updateItem = () => {
     
 
+    const updatedItem = {
+      ...this.state.item,
+      available: true ? 1 : 0
+    }
+
     this.props.updateItem(this.state.item.itemId, this.state.item);
     this.setState({
       isEditing: false,

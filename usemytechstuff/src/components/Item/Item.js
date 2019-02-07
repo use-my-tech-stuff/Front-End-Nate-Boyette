@@ -28,19 +28,28 @@ class Item extends React.Component {
    this.props.getUserById(this.props.item.owner)
   }
 
+  handleClick = (e) =>{
+    e.preventDefault();
+    if (!localStorage.getItem('jwt')) {
+      this.props.history.push('/register')
+    } else {
+      this.props.rentItem(this.props.item)
+    }
+  }
+
   
 // User info accessible, add and format any data necessry
   render() {
     console.log(this.props);
     const userId = Number(localStorage.getItem('userId'))
     
-    return (
+    return !this.props.user ? <h1>Loading...</h1> : (
       <ItemCardContainer>
         <Card>
           <CardBody>
             <ItemProfileHeaderCont>
               <ProfileImage src={faker.image.avatar()} />
-              <CardTitle>{this.props.user.username}</CardTitle>
+              <CardTitle>{this.props.user.username || 'Loading...' }</CardTitle>
             </ItemProfileHeaderCont>
           </CardBody>
           <CardImg
@@ -68,8 +77,8 @@ class Item extends React.Component {
             <CardText>
               Available: {this.props.item.available === true ? "Yes" : "No"}
             </CardText>
-            {userId === this.props.item.owner || userId === this.props.item.renter || this.props.item.available === false ? null : (
-              <Button onClick={(e) => this.props.rentItem(e,this.props.item)}>Request Rental</Button>
+            {userId === this.props.item.owner || userId === this.props.item.renter || this.props.item.renter !== null ? null : (
+              <Button onClick={(e) => this.handleClick(e)}>Request Rental</Button>
             )}
           </CardBody>
         </Card>

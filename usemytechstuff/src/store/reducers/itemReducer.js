@@ -142,7 +142,8 @@ const itemReducer = (state = initialState, action) => {
         ...state,
         itemStatus: {
           ...state.itemStatus,
-          isUpdatingItem: true
+          isUpdatingItem: true,
+          itemUpdated: false
         },
         error: null
       };
@@ -150,10 +151,14 @@ const itemReducer = (state = initialState, action) => {
     case UPDATE_ITEM_SUCCESS:
       return {
         ...state,
-        items: action.payload,
+        items: [
+          ...state.items,
+          action.payload
+       ] ,
         itemStatus: {
           ...state.itemStatus,
-          isUpdatingItem: false
+          isUpdatingItem: false,
+          itemUpdated: true,
         },
         error: null
       };
@@ -212,7 +217,11 @@ const itemReducer = (state = initialState, action) => {
     case RENT_ITEM_SUCCESS:
       return {
         ...state,
-        items: action.payload,
+        // items: [
+        //   ...state.items,
+        //   action.payload
+        // ],
+        item: action.payload,
         itemStatus: {
           isRentingItem: false
         }

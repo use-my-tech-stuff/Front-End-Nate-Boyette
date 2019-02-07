@@ -33,7 +33,7 @@ const UserProfilePage = props => {
 
   console.log('SITE ITEMS', props.siteItems)
 
-  const rentedItems = !props.siteItems ? null : props.siteItems.filter(item => {
+  const rentedItems = props.siteItems === null ? null : props.siteItems.filter(item => {
     return item.renter === Number(userId)
   }) 
 
