@@ -5,7 +5,9 @@ import {
   getUserById,
   getItemsByUserId,
   getItemById,
-  deleteItem
+  deleteItem,
+  getItems,
+  getUsers
 } from "../store/actions";
 
 import UserProfilePage from "../components/User/UserProfilePage";
@@ -16,6 +18,8 @@ class UserProfileView extends React.Component {
     const userId = localStorage.getItem("userId");
     this.props.getUserById(userId);
     this.props.getItemsByUserId(userId);
+    this.props.getItems();
+    this.props.getUsers();
   }
 
   handleDelete = (e, itemId) => {
@@ -28,16 +32,22 @@ class UserProfileView extends React.Component {
     if (prevProps.itemDeleted !== this.props.itemDeleted) {
       this.props.getUserById(userId);
       this.props.getItemsByUserId(userId);
+      this.props.getItems();
+      this.props.getUsers();
     }
 
     if (prevProps.itemAdded !== this.props.itemAdded) {
       this.props.getUserById(userId);
       this.props.getItemsByUserId(userId);
+      this.props.getItems();
+      this.props.getUsers();
     }
 
     if (prevProps.isUpdatingItem !== this.props.isUpdatingItem) {
       this.props.getUserById(userId);
       this.props.getItemsByUserId(userId);
+      this.props.getItems();
+      this.props.getUsers();
     }
   }
 
@@ -48,8 +58,9 @@ class UserProfileView extends React.Component {
   };
 
   render() {
-    console.log("params.id", this.props.match.params.id);
-    console.log(this.props.userStatus.isLoggedIn);
+    // console.log("params.id", this.props.match.params.id);
+    // console.log(this.props.siteItems);
+    // console.log("ALL USERS", this.props.allUsers)
     return (
       <div>
         {!this.props.user ? (
@@ -63,6 +74,8 @@ class UserProfileView extends React.Component {
             getItemById={this.props.getItemById}
             deleteItem={this.handleDelete}
             updateItem={this.populateUpdateForm}
+            siteItems={this.props.siteItems}
+            allUsers={this.props.allUsers}
           />
         )}
       </div>
@@ -73,8 +86,9 @@ class UserProfileView extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
+    allUsers: state.userReducer.users,
     items: state.userReducer.items,
-    siteItems:  state.itemReducer.items,
+    siteItems: state.itemReducer.items,
     itemStatus: state.userReducer.items,
     userStatus: state.userReducer.userStatus,
     itemDeleted: state.itemReducer.itemStatus.itemDeleted,
@@ -85,5 +99,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUserById, getItemsByUserId, getItemById, deleteItem }
+  { getUserById, getItemsByUserId, getItemById, deleteItem, getItems, getUsers }
 )(UserProfileView);

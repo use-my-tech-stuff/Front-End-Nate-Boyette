@@ -10,8 +10,11 @@ class LoginView extends React.Component {
     user: {
       password: "",
       username: ""
-    }
+    },
+    
   };
+
+  
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -26,27 +29,49 @@ class LoginView extends React.Component {
     // console.log(this.state);
   };
 
-    loginHandler = (e) => {
+    loginHandler = e => {
     e.preventDefault();
+    e.persist();
     console.log(this.props.isLoggedIn)
-    this.props.loginUser(this.state.user);
-    console.log(this.props.isLoggedIn);
     
-    setTimeout(() => {
-      if (!this.props.isLoggedIn) {
-        return alert('User Not Found')
-      } else {
-        
-       this.props.history.push(`/item-list`);
-        
-      }
-    }, 3000)
+    this.props.loginUser(this.state.user, this.pushToHome)
+    console.log(this.props.user);
+      
+
     
-    
-    
+
+      setTimeout(() => {
+        if(this.props.loginFailed) {
+          return;
+        }
+        if (this.props.isLoggedIn) {
+          this.props.history.push(`/item-list`);
+        }
+      }, 1000);
+       
+
+      // if (this.props.loginFailed)
+      // this.setState({
+      //   token: localStorage.getItem('jwt')
+      // })
+      
+      
+      // if (this.state.isLoggedIn) {
+      //   // return this.props.history.push(`/item-list`);
+      // }
+  
   };
 
+ 
+
+
+
+ 
+
   render() {
+    
+    
+
     return (
       <div>
         <LoginPage
@@ -54,7 +79,10 @@ class LoginView extends React.Component {
           username={this.state.user.username}
           handleChange={this.handleChange}
           loginHandler={this.loginHandler}
+          loginFailed={this.props.loginFailed}
+          isLoggingIn={this.props.isLoggingIn}
         />
+        
       </div>
     );
   }
@@ -62,6 +90,10 @@ class LoginView extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    user: state.userReducer.userStatus.user,
+    isLoggingIn: state.userReducer.userStatus.isLoggingIn,
+    loginError: state.userReducer.error,
+    loginFailed: state.userReducer.userStatus.loginFailed,
     isLoggedIn: state.userReducer.userStatus.isLoggedIn
   };
 };

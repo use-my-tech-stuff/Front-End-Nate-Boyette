@@ -11,7 +11,9 @@ import {
   FETCH_ITEMSBYUSERID_START,
   FETCH_ITEMSBYUSERID_SUCCESS,
   FETCH_ITEMSBYUSERID_FAIL,
-  LOGIN_USER,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_START,
+  LOGIN_USER_FAIL,
   LOGOUT_USER,
   REGISTER_USER_START,
   REGISTER_USER_SUCCESS,
@@ -25,7 +27,9 @@ const initialState = {
   userStatus: {
     isFetchingUsers: false,
     usersFetched: false,
+    isLoggingIn: false,
     isLoggedIn: false,
+    loginFailed: false,
     isFetchingItems: false,
     itemsFetched: false,
     isRegisteringUser: false,
@@ -125,22 +129,44 @@ const userReducer = (state = initialState, action) => {
         },
         error: action.payload
       };
-    case LOGIN_USER:
+    case LOGIN_USER_START:
+      return {
+        ...state,
+        userStatus: {
+          ...state.userStatus,
+          isLoggingIn: true,
+          isLoggedIn: false,
+          loginFailed: false
+        }
+      };
+    case LOGIN_USER_SUCCESS:
       return {
         ...state,
         user: action.payload,
         userStatus: {
           ...state.userStatus,
-          isLoggedIn: true
+          isLoggedIn: true,
+          isLoggingIn: false,
+          loginFailed: false
         }
+      };
+    case LOGIN_USER_FAIL:
+      return {
+        ...state,
+        userStatus: {
+          ...state.userStatus,
+          isLoggingIn: true,
+          isLoggedIn: false,
+          loginFailed: true
+        },
+        error: action.payload
       };
     case LOGOUT_USER:
       return {
         state: initialState,
         userStatus: {
-          ...state.userStatus ,
+          ...state.userStatus,
           isLoggedIn: false
-          
         }
       };
     case REGISTER_USER_START:
@@ -169,7 +195,7 @@ const userReducer = (state = initialState, action) => {
           isRegisteringUser: true,
           isRegistered: false,
           isLoggedIn: false
-        }, 
+        },
         error: action.payload
       };
     case ADD_USER_START:

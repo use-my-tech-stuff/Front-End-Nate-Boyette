@@ -17,7 +17,7 @@ class ItemFormView extends React.Component {
       dailyPrice: "",
       weeklyPrice: "",
       available: true,
-      renter: 1
+      renter: null
     },
     editItem: {},
     isEditing: false,
@@ -47,36 +47,31 @@ class ItemFormView extends React.Component {
 
   fileHandler = e => {
     this.setState({
-      item: {
-        ...this.state.item,
-        selectedFile: e.target.files[0]
-      }
+      selectedFile: e.target.files[0]
     });
 
     const fd = new FormData();
     fd.append("image", this.state.selectedFile);
-
-    
   };
 
-  uploadImage = (e) => {
+  uploadImage = e => {
     e.preventDefault();
 
     const fd = new FormData();
     fd.append("image", this.state.selectedFile);
 
-    console.log('firing')
-    
+    // console.log("firing");
+
     axios
       .post("https://use-my-tech-stuff.herokuapp.com/api/items/upload", fd)
       .then(res => {
         console.log("res", res);
-        // this.setState({
-        //   item: {
-        //     ...this.state.item,
-        //     imgUrl: res.data.image
-        //   }
-        // });
+        this.setState({
+          item: {
+            ...this.state.item,
+            imgUrl: res.data.image
+          }
+        });
       })
       .catch(err => console.log(err));
   };
@@ -93,11 +88,10 @@ class ItemFormView extends React.Component {
 
     // }
 
-    
     this.setState({
       item: {
         ...this.state.item,
-        owner: localStorage.getItem("userId"),
+        owner: localStorage.getItem("userId")
       }
     });
 
@@ -107,9 +101,11 @@ class ItemFormView extends React.Component {
   };
 
   updateItem = () => {
+    
+
     this.props.updateItem(this.state.item.itemId, this.state.item);
     this.setState({
-      isEditing: false
+      isEditing: false,
     });
     localStorage.removeItem("editItem");
     localStorage.removeItem("editItemId");
@@ -118,7 +114,7 @@ class ItemFormView extends React.Component {
   cancelForm = () => [];
 
   render() {
-    console.log(this.state.item);
+    // console.log(this.state.item);
 
     // console.log(this.state.item)
     // console.log(localStorage.getItem('userId'));

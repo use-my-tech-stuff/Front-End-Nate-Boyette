@@ -32,6 +32,7 @@ class NavBarView extends React.Component {
           userLogOut={this.userLogOut}
           routeToDashboard={this.routeToDashboard}
           isLoggedIn={this.props.isLoggedIn}
+          history={this.props.history}
         />
       </>
     );

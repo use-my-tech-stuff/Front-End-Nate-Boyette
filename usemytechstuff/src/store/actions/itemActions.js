@@ -89,6 +89,7 @@ export const deleteItem = id => dispatch => {
     
 };
 
+
 // Update Item Action
 export const updateItem = (itemId, item) => dispatch => {
 
@@ -100,18 +101,23 @@ export const updateItem = (itemId, item) => dispatch => {
   };
 
   dispatch({ type: UPDATE_ITEM_START });
-  
+  console.log(item)
   axios
     .patch(`${baseUrl}/api/items/${itemId}`, item, options)
     .then(res => {
       console.log(res)
       axios
         .get(`${baseUrl}/api/items`)
+        // dispatch(getItems())
         .then(res => dispatch({ type: UPDATE_ITEM_SUCCESS, payload: res.data }))
         .catch(err => dispatch({ type: FETCH_ITEMS_FAIL, payload: err }));
     
     })
-    .catch(err => dispatch({ type: UPDATE_ITEM_FAIL, payload: err }));
+    .catch(err => {
+      console.log(err);
+      console.log(err.message)
+      dispatch({ type: UPDATE_ITEM_FAIL, payload: err })
+    });
 };
 
 // // Cancel Form Action...Will push back to item page

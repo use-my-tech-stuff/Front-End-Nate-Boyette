@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios"
-import "./index.css";
+
 import "bootstrap/dist/css/bootstrap.css";
 
+
+import "./index.css";
 
 // Imported Components
 import App from "./App";
@@ -16,12 +18,10 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk"
 import logger from "redux-logger"
 
-// import "@fortawesome/fontawesome-free/css/all.min.css";
-// import 'bootstrap-css-only/css/bootstrap.min.css'; 
-// import 'mdbreact/dist/css/mdb.css';
+
 
 import rootReducer from "./store/reducers"
-axios.defaults.withCredentials = true;
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   rootReducer,

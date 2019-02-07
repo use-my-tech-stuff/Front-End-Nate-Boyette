@@ -20,7 +20,7 @@ const LoginPage = props => {
 
   return (
     <FormContainer>
-      <h2>Log in to AirTNT</h2>
+      <h2>Log in to Tech Plum</h2>
       <Form>
         <FormGroup row>
           <Col sm={10}>
@@ -46,8 +46,14 @@ const LoginPage = props => {
             />
           </Col>
         </FormGroup>
-        <Button color="primary" onClick={props.loginHandler} >Log In</Button>
+        <Button color="primary" onClick={props.loginHandler}>
+          Log In
+        </Button>
       </Form>
+      {props.loginFailed === true && (
+        <h4>Username or password incorrect</h4>
+      )}
+      {props.isLoggingIn === true && props.loginFailed === false && <h4>Logging In</h4>}
     </FormContainer>
   );
 };

@@ -32,7 +32,7 @@ class ItemView extends React.Component {
       renter: userId 
     }
 
-    console.log('RENTED ITEM', rentedItem)
+    // console.log('RENTED ITEM', rentedItem)
     this.props.rentItem(this.props.item.itemId, rentedItem)
 
     this.props.getItemById(this.props.match.params.id);
@@ -40,7 +40,7 @@ class ItemView extends React.Component {
   
   
   render() {
-    console.log(this.props.item);
+    // console.log(this.props.item);
 
     return (
       <div>

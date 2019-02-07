@@ -22,28 +22,40 @@ import { Link } from "react-router-dom";
 
 export default class NavBar extends React.Component {
   
-  
+  pushToPage = (e) => {
+    e.preventDefault();
+    const routeTo = !this.props.isLoggedIn ? 'login' : 'item-list'
+    this.props.history.push(`/${routeTo}`)
+  }
   
 
   render() {
     const userId = localStorage.getItem("userId");
+    
     return (
       <>
-        <Navbar className= "shadow-sm h-75" color="light" light expand="md" sticky="top">
-          <NavbarBrand href="/">Tech Plum</NavbarBrand>
+        <Navbar
+          className="shadow-sm h-75"
+          color="light"
+          light
+          expand="md"
+          sticky="top"
+        >
+          <NavbarBrand href={'#'} onClick={this.pushToPage}>Tech Plum</NavbarBrand>
           <Nav className="ml-auto" navbar>
             <NavItem>
               <Link to="/item-list">View Items</Link>
             </NavItem>
-            {
-              !this.props.isLoggedIn ? null : <NavItem onClick={this.props.routeToDashboard}>
+            {!userId ? null : (
+              <NavItem onClick={this.props.routeToDashboard}>
                 <NavLink href="">Profile</NavLink>
               </NavItem>
-            }
-            
-            <NavItem onClick={this.props.userLogOut}>
-              <Link to={`/login`}>Log Out</Link>
-            </NavItem>
+            )}
+            {!userId ? null : (
+              <NavItem onClick={this.props.userLogOut}>
+                <Link to={`/login`}>Log Out</Link>
+              </NavItem>
+            )}
           </Nav>
         </Navbar>
       </>

@@ -1,6 +1,7 @@
 import React from "react";
 import faker from "faker";
 
+import UserProfileTabs from "./UserProfileTabs";
 
 import UserItemList from "./UserItemList";
 
@@ -23,12 +24,21 @@ import { Route, NavLink } from "react-router-dom";
 const UserProfilePage = props => {
   const routeToFormPage = (e, item) => {
     e.preventDefault();
-    localStorage.removeItem('editItem')
-    localStorage.removeItem('editItemId')
+    localStorage.removeItem("editItem");
+    localStorage.removeItem("editItemId");
     props.history.push(`/item-form/`);
   };
   // console.log(props);
-  const userId = localStorage.getItem('userId');
+  const userId = localStorage.getItem("userId");
+
+  console.log('SITE ITEMS', props.siteItems)
+
+  const rentedItems = !props.siteItems ? null : props.siteItems.filter(item => {
+    return item.renter === Number(userId)
+  }) 
+
+  console.log('RENTED ITEMS', rentedItems.length)
+  
   return (
     <>
       <UserPageContainer>
@@ -45,7 +55,7 @@ const UserProfilePage = props => {
                   Items For Rent:{" "}
                   {props.items.length !== 0 ? props.items.length : ""}
                 </CardText>
-                <CardText>Items Renting: 156</CardText>
+                <CardText>Items Renting: {rentedItems && rentedItems.length !== 0 ? rentedItems.length : ""}</CardText>
                 <ButtonContainer>
                   <Button size="sm" onClick={routeToFormPage}>
                     Add Item
@@ -57,15 +67,15 @@ const UserProfilePage = props => {
           </CardBody>
         </Card>
       </UserPageContainer>
-      <UserItemListContainer>
+      {/* <UserItemListContainer> */}
         <hr />
 
-        <NavLink exact to={`/dashboard/${userId}`}>
+        {/* <NavLink exact to={`/dashboard/${userId}`}>
           My Items
         </NavLink>
-        <NavLink to={`/dashboard/${userId}/rented`}>My Rentals</NavLink>
+        <NavLink to={`/dashboard/${userId}/rented`}>My Rentals</NavLink> */}
 
-        <UserItemsContainer>
+        {/* <UserItemsContainer>
           <UserItemList
             items={props.items}
             user={props.user}
@@ -75,8 +85,20 @@ const UserProfilePage = props => {
             deleteItem={props.deleteItem}
             updateItem={props.updateItem}
           />
-        </UserItemsContainer>
-      </UserItemListContainer>
+        </UserItemsContainer> */}
+
+        <UserProfileTabs
+          items={props.items}
+          user={props.user}
+          history={props.history}
+          getItemById={props.getItemById}
+          userStatus={props.userStatus}
+          deleteItem={props.deleteItem}
+          updateItem={props.updateItem}
+          siteItems={props.siteItems}
+          allUsers={props.allUsers}
+        />
+      {/* </UserItemListContainer> */}
     </>
     // TODO - Bring in ItemListView instead of ItemList
     // Will need to conditionally call getItems and getUsers on componentDidMount.
@@ -105,7 +127,7 @@ const UserInfoContainer = styled.div`
 
 const JustInfoContainer = styled.div`
   width: 50%;
-`
+`;
 
 const ProfileAvatarContainer = styled.div`
   text-align: center;
@@ -126,7 +148,7 @@ const UserItemsContainer = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-`
+`;
 
 const ProfileImage = styled.img`
   border-radius: 100px;

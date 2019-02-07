@@ -12,7 +12,10 @@ export const FETCH_ITEMSBYUSERID_START = "FETCH_ITEMBYUSERID_START";
 export const FETCH_ITEMSBYUSERID_SUCCESS = "FETCH_ITEMBYUSERID_SUCCESS";
 export const FETCH_ITEMSBYUSERID_FAIL = "FETCH_ITEMBYUSERID_FAIL";
 
-export const LOGIN_USER = "LOGIN_USER"
+export const LOGIN_USER_START = "LOGIN_USER_START";
+export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS"
+export const LOGIN_USER_FAIL = "LOGIN_USER_FAIL"
+
 export const LOGOUT_USER = "LOGOUT_USER"
 
 export const REGISTER_USER_START = "REGISTER_USER_START"; 
@@ -74,14 +77,15 @@ export const addUser = user => dispatch => {
 
 
 export const loginUser = user => dispatch => {
-  
+  dispatch({ type: LOGIN_USER_START })
   axios.post(`${baseUrl}/api/auth/login`, user)
   .then(res => {
     localStorage.setItem('jwt', res.data.token)
     localStorage.setItem('userId', res.data.userId)
-    dispatch({type: REGISTER_USER_SUCCESS})
+    console.log(res)
+    dispatch({type: LOGIN_USER_SUCCESS})
   })
-  .catch(err => console.log(err))
+  .catch(err => dispatch({type: LOGIN_USER_FAIL, payload: err}))
   // Need to handle user login here
 }
 
@@ -93,13 +97,14 @@ export const logOut = () => dispatch => {
 }
 
 
-export const registerUser = user => dispatch => {
+export const registerUser = (user) => dispatch => {
   dispatch({type: REGISTER_USER_START})
   axios.post(`${baseUrl}/api/auth/register`, user)
     .then(res => {
       localStorage.setItem('jwt', res.data.token)
       localStorage.setItem('userId', res.data.userId)
-      dispatch({ type: REGISTER_USER_SUCCESS })
+      
+      dispatch({ type: REGISTER_USER_SUCCESS, payload: res.data.token })
     })
     .catch(err => dispatch({type: REGISTER_USER_FAIL, payload: err}))
 }

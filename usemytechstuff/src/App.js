@@ -11,6 +11,8 @@ import RegisterView from "./views/RegisterView"
 import UserProfileView from "./views/UserProfileView"
 import NavBarView from "./views/NavBarView"
 
+
+
 import "./App.css";
 
 class App extends Component {

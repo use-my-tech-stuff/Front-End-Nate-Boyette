@@ -40,7 +40,7 @@ const ItemList = props => {
                 </UserInfoContainer>
                 <CardImg
                   top
-                  width="100%"
+                  width="50%"
                   src={item.imgUrl}
                   alt={item.title}
                 />
@@ -59,7 +59,7 @@ const ItemList = props => {
                   <CardSubtitle>{`$${
                     item.weeklyPrice
                   } / week`}</CardSubtitle>
-                  <CardText>{item.description}</CardText>
+                  {/* <CardText>{item.description}</CardText> */}
                   <ItemButtonContainer>
                     <Button onClick={e => routeToItemPage(e, item)}>
                       View Item
@@ -90,7 +90,7 @@ const ItemList = props => {
 */
 
 const ItemCardContainer = styled.div`
-  width: 45%;
+  width: 40%;
   margin-top: 1%;
   margin-bottom: 1%;
   text-align: left;
