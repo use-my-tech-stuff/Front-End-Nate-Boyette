@@ -1,5 +1,3 @@
-
-
 import {
   FETCH_ITEMS_START,
   FETCH_ITEMS_SUCCESS,
@@ -16,9 +14,11 @@ import {
   CANCEL_ITEM_FORM,
   FETCH_ITEMBYID_START,
   FETCH_ITEMBYID_SUCCESS,
-  FETCH_ITEMBYID_FAIL
+  FETCH_ITEMBYID_FAIL,
+  RENT_ITEM_START,
+  RENT_ITEM_SUCCESS,
+  RENT_ITEM_FAIL
 } from "../actions";
-
 
 const initialState = {
   items: [],
@@ -31,7 +31,8 @@ const initialState = {
     isUpdatingItem: false,
     itemUpdated: false,
     isDeletingItem: false,
-    itemDeleted: false
+    itemDeleted: false,
+    isRentingItem: false
   },
   error: null
 };
@@ -54,10 +55,9 @@ const itemReducer = (state = initialState, action) => {
         itemStatus: {
           ...state.itemStatus,
           isFetchingItems: false,
-          itemsFetched: true,
+          itemsFetched: true
         },
         error: null
-
       };
 
     case FETCH_ITEMS_FAIL:
@@ -71,7 +71,7 @@ const itemReducer = (state = initialState, action) => {
         error: action.payload
       };
 
-      case FETCH_ITEMBYID_START: 
+    case FETCH_ITEMBYID_START:
       return {
         ...state,
         itemStatus: {
@@ -80,9 +80,9 @@ const itemReducer = (state = initialState, action) => {
           itemsFetched: false
         },
         error: null
-      }
+      };
 
-      case FETCH_ITEMBYID_SUCCESS: 
+    case FETCH_ITEMBYID_SUCCESS:
       return {
         ...state,
         item: action.payload,
@@ -93,8 +93,8 @@ const itemReducer = (state = initialState, action) => {
         },
         error: null
       };
-      
-      case FETCH_ITEMBYID_FAIL: 
+
+    case FETCH_ITEMBYID_FAIL:
       return {
         ...state,
         itemStatus: {
@@ -159,7 +159,14 @@ const itemReducer = (state = initialState, action) => {
       };
 
     case UPDATE_ITEM_FAIL:
-      return {};
+      return {
+        ...state,
+        itemStatus: {
+          ...state.itemStatus,
+          isUpdatingItem: true
+        },
+        error: action.payload
+      };
 
     case DELETE_ITEM_START:
       return {
@@ -194,8 +201,30 @@ const itemReducer = (state = initialState, action) => {
         error: action.payload
       };
 
-    case CANCEL_ITEM_FORM:
-      return {};
+    case RENT_ITEM_START:
+      return {
+        ...state,
+        itemStatus: {
+          isRentingItem: true
+        },
+        error: null
+      };
+    case RENT_ITEM_SUCCESS:
+      return {
+        ...state,
+        items: action.payload,
+        itemStatus: {
+          isRentingItem: false
+        }
+      };
+    case RENT_ITEM_FAIL:
+      return {
+        ...state,
+        itemStatus: {
+          isRentingItem: true
+        },
+        error: action.payload
+      };
 
     default:
       return state;

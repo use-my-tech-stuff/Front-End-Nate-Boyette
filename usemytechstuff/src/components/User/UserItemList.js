@@ -33,7 +33,7 @@ const ItemList = props => {
               <Card>
                 <UserInfoContainer>
                   <ProfileAvatarContainer>
-                    <ProfileImage src={faker.image.avatar()} />
+                    <ProfileImage src={props.user.thumbnail} />
                     <CardTitle>{props.user.username}</CardTitle>
                   </ProfileAvatarContainer>
                   {/* More DATA CAN GO IN THE USER ITEM LIST HEADER*/}
@@ -41,7 +41,7 @@ const ItemList = props => {
                 <CardImg
                   top
                   width="100%"
-                  src={item.image}
+                  src={item.imgUrl}
                   alt={item.title}
                 />
                 <CardBody>

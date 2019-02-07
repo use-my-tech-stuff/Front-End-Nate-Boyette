@@ -29,15 +29,15 @@ const ItemList = props => {
                   <ItemListHeader ownerId={item.owner} users={props.users} />
                   {/* MORE DATA CAN GO INTO THE ITEM LIST HEADER*/}
                 </CardBody>
-                <CardImg top width="100%" src={item.image} alt={item.title} />
+                <CardImg top width="40%" src={item.imgUrl} alt={item.title} />
                 <CardBody>
                   <CardTitle>
-                    <h3>{item.title}</h3>
+                    {item.title}
                   </CardTitle>
                   <CardSubtitle>
-                    <h4>
+                   
                       {item.brand} - {item.model}
-                    </h4>
+                    
                   </CardSubtitle>
                   <CardSubtitle>{`$${item.dailyPrice} / day`}</CardSubtitle>
                   <CardSubtitle>{`$${item.weeklyPrice} / week`}</CardSubtitle>

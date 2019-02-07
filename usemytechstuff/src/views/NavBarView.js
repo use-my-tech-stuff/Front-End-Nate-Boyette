@@ -11,6 +11,7 @@ import { logOut } from "../store/actions";
 class NavBarView extends React.Component {
   userLogOut = e => {
     this.props.logOut();
+    
   };
 
   routeToDashboard = (e) => {
@@ -23,20 +24,27 @@ class NavBarView extends React.Component {
   };
 
   render() {
-    console.log(this.props);
+    console.log(this.props.isLoggedIn);
     // console.log(localStorage)
     return (
       <>
         <NavBar
           userLogOut={this.userLogOut}
           routeToDashboard={this.routeToDashboard}
+          isLoggedIn={this.props.isLoggedIn}
         />
       </>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.userReducer.userStatus.isLoggedIn
+  }
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { logOut }
 )(withRouter(NavBarView));

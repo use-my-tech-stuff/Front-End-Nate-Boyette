@@ -136,7 +136,12 @@ const userReducer = (state = initialState, action) => {
       };
     case LOGOUT_USER:
       return {
-        state: initialState
+        state: initialState,
+        userStatus: {
+          ...state.userStatus ,
+          isLoggedIn: false
+          
+        }
       };
     case REGISTER_USER_START:
       return {

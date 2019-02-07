@@ -15,11 +15,15 @@ export {
   FETCH_ITEMBYID_START,
   FETCH_ITEMBYID_SUCCESS,
   FETCH_ITEMBYID_FAIL,
+  RENT_ITEM_START,
+  RENT_ITEM_SUCCESS,
+  RENT_ITEM_FAIL,
   getItems,
   addItem,
   updateItem,
   deleteItem,
-  getItemById
+  getItemById,
+  rentItem
 } from "./itemActions";
 
 export {
@@ -40,11 +44,19 @@ export {
   REGISTER_USER_START,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAIL,
+  DELETE_USER_START,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_FAIL,
+  UPDATE_USER_START,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAIL,
   loginUser,
   getItemsByUserId,
   getUserById,
   getUsers,
   addUser,
   registerUser,
-  logOut
+  logOut,
+  deleteUser,
+  updateUser
 } from "./userActions";

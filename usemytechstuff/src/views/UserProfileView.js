@@ -74,6 +74,7 @@ const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
     items: state.userReducer.items,
+    siteItems:  state.itemReducer.items,
     itemStatus: state.userReducer.items,
     userStatus: state.userReducer.userStatus,
     itemDeleted: state.itemReducer.itemStatus.itemDeleted,

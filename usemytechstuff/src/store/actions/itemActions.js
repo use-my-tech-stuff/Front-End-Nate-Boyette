@@ -22,6 +22,10 @@ export const UPDATE_ITEM_FAIL = "UPDATE_ITEM_FAIL";
 
 export const CANCEL_ITEM_FORM = "CANCEL_ITEM_FORM";
 
+export const RENT_ITEM_START = 'RENT_ITEM_START';
+export const RENT_ITEM_SUCCESS = 'RENT_ITEM_SUCCESS'
+export const RENT_ITEM_FAIL = 'RENT_ITEM_FAIL'
+
 const baseUrl = `https://use-my-tech-stuff.herokuapp.com`;
 
 // Fetch Item Action
@@ -54,7 +58,7 @@ export const addItem = item => dispatch => {
 dispatch({type: ADD_ITEM_START})
   console.log('itemToAdd', item)
   axios
-    .post(`${baseUrl}/api/items`, item)
+    .post(`${baseUrl}/api/items`, item, options)
     .then(res => {
       
       console.log('addItem', res.data)  
@@ -63,11 +67,19 @@ dispatch({type: ADD_ITEM_START})
     .catch(err => dispatch({ type: ADD_ITEM_FAIL, payload: err }));
 };
 
+
 // Delete Item Action
 export const deleteItem = id => dispatch => {
+  const token = localStorage.getItem("jwt");
+  const options = {
+    headers: {
+      authorization: token
+    }
+  };
+
   dispatch({ type: DELETE_ITEM_START });
   axios
-    .delete(`${baseUrl}/api/items/${id}`)
+    .delete(`${baseUrl}/api/items/${id}`, options)
     .then(res => {
       console.log(res)
       dispatch({ type: DELETE_ITEM_SUCCESS, payload: res.data })
@@ -79,9 +91,18 @@ export const deleteItem = id => dispatch => {
 
 // Update Item Action
 export const updateItem = (itemId, item) => dispatch => {
+
+  const token = localStorage.getItem("jwt");
+  const options = {
+    headers: {
+      authorization: token
+    }
+  };
+
   dispatch({ type: UPDATE_ITEM_START });
+  
   axios
-    .patch(`${baseUrl}/api/items/${itemId}`, item)
+    .patch(`${baseUrl}/api/items/${itemId}`, item, options)
     .then(res => {
       console.log(res)
       axios
@@ -93,7 +114,33 @@ export const updateItem = (itemId, item) => dispatch => {
     .catch(err => dispatch({ type: UPDATE_ITEM_FAIL, payload: err }));
 };
 
-// Cancel Form Action...Will push back to item page
-export const cancelItemForm = () => dispatch => {
-  dispatch({ type: CANCEL_ITEM_FORM });
-};
+// // Cancel Form Action...Will push back to item page
+// export const cancelItemForm = () => dispatch => {
+//   dispatch({ type: CANCEL_ITEM_FORM });
+// };
+
+
+export const rentItem = (itemId,item) => dispatch => {
+  const token = localStorage.getItem("jwt");
+  const options = {
+    headers: {
+      authorization: token
+    }
+  };
+
+  dispatch({type: RENT_ITEM_START})
+  axios
+    .patch(`${baseUrl}/api/items/${itemId}`, item, options)
+    .then(res => {
+      console.log(res)
+      axios
+        .get(`${baseUrl}/api/items`)
+        .then(res => {
+          console.log('RENTAL ITEM', item)
+          dispatch({ type: RENT_ITEM_SUCCESS, payload: res.data })
+        })
+        .catch(err => dispatch({ type: RENT_ITEM_FAIL, payload: err }));
+
+    })
+    .catch(err => dispatch({ type: UPDATE_ITEM_FAIL, payload: err }));
+}

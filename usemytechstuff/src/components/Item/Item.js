@@ -46,7 +46,7 @@ class Item extends React.Component {
           <CardImg
             top
             width="100%"
-            src={this.props.item.image}
+            src={this.props.item.imgUrl}
             alt={this.props.item.title}
           />
           <CardBody>
@@ -66,10 +66,10 @@ class Item extends React.Component {
             } / week`}</CardSubtitle>
             <CardText>{this.props.item.description}</CardText>
             <CardText>
-              Available: {this.props.item.available === 1 ? "Yes" : "No"}
+              Available: {this.props.item.available === true ? "Yes" : "No"}
             </CardText>
-            {userId === this.props.item.owner ? null : (
-              <Button>Request Rental</Button>
+            {userId === this.props.item.owner || userId === this.props.item.renter || this.props.item.available === false ? null : (
+              <Button onClick={(e) => this.props.rentItem(e,this.props.item)}>Request Rental</Button>
             )}
           </CardBody>
         </Card>

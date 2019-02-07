@@ -18,6 +18,8 @@ import {
   Col
 } from "reactstrap";
 
+import { Route, NavLink } from "react-router-dom";
+
 const UserProfilePage = props => {
   const routeToFormPage = (e, item) => {
     e.preventDefault();
@@ -26,6 +28,7 @@ const UserProfilePage = props => {
     props.history.push(`/item-form/`);
   };
   // console.log(props);
+  const userId = localStorage.getItem('userId');
   return (
     <>
       <UserPageContainer>
@@ -33,7 +36,7 @@ const UserProfilePage = props => {
           <CardBody>
             <UserInfoContainer>
               <ProfileAvatarContainer>
-                <ProfileImage src={faker.image.avatar()} />
+                <ProfileImage src={props.user.thumbnail} />
                 <CardTitle>{props.user.username}</CardTitle>
               </ProfileAvatarContainer>
 
@@ -42,11 +45,13 @@ const UserProfilePage = props => {
                   Items For Rent:{" "}
                   {props.items.length !== 0 ? props.items.length : ""}
                 </CardText>
-                <CardText>Reviews: 156</CardText>
+                <CardText>Items Renting: 156</CardText>
                 <ButtonContainer>
-                  <Button size='sm' onClick={routeToFormPage}>Add Item</Button>
-                  <Button size="sm">View Rentals</Button>
-                </ButtonContainer>                
+                  <Button size="sm" onClick={routeToFormPage}>
+                    Add Item
+                  </Button>
+                  {/* <Button size="sm">View Rentals</Button> */}
+                </ButtonContainer>
               </JustInfoContainer>
             </UserInfoContainer>
           </CardBody>
@@ -54,7 +59,12 @@ const UserProfilePage = props => {
       </UserPageContainer>
       <UserItemListContainer>
         <hr />
-        
+
+        <NavLink exact to={`/dashboard/${userId}`}>
+          My Items
+        </NavLink>
+        <NavLink to={`/dashboard/${userId}/rented`}>My Rentals</NavLink>
+
         <UserItemsContainer>
           <UserItemList
             items={props.items}

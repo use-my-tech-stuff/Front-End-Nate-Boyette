@@ -14,10 +14,7 @@ import {
 } from "reactstrap";
 import styled from "styled-components";
 
-
-
 const ItemForm = props => {
-
   const handleClick = e => {
     // e.preventDefault();
 
@@ -26,20 +23,17 @@ const ItemForm = props => {
     if (props.isEditing) {
       props.updateItem();
     } else {
-      props.addItem()
+      props.addItem();
     }
-    
-    props.history.push(`/dashboard/${localStorage.getItem('userId')}`)
-    
-  }
 
-  
+    props.history.push(`/dashboard/${localStorage.getItem("userId")}`);
+  };
 
   // console.log(props.item)
   return (
     <FormContainer>
       {props.isEditing ? <h1>Edit Item</h1> : <h2>Add An Item</h2>}
-      <Form action=''>
+      <Form method="/POST" encType="multipart/form-data">
         <FormGroup row>
           <Label for="itemTitle" sm={2}>
             Title
@@ -97,15 +91,11 @@ const ItemForm = props => {
               type="text"
               name="label"
               id="itemCategory"
-              placeholder='Enter a Category'
+              placeholder="Enter a Category"
               value={props.item.label}
               onChange={props.handleChange}
               required
-            
-
             />
-        
-            
           </Col>
         </FormGroup>
         <FormGroup row>
@@ -123,6 +113,25 @@ const ItemForm = props => {
             />
           </Col>
         </FormGroup>
+        <FormGroup row>
+          <Label for="image" sm={2}>
+            Image
+          </Label>
+          <Col sm={10}>
+            <Input
+              type="file"
+              name="imgUrl"
+              accept="image/*"
+              id="image"
+              onChange={props.fileHandler}
+            />
+            <Button onClick={(e) => props.uploadImage(e)}>Upload</Button>
+            <FormText color="muted" className="text-left">
+              Upload an image of your item.
+            </FormText>
+          </Col>
+        </FormGroup>
+
         <FormGroup row>
           <Label for="dailyPrice" sm={2}>
             Daily Price
@@ -181,7 +190,6 @@ const FormContainer = styled.div`
   margin: 2% auto;
   padding: 50px;
   border: 1px solid lightgrey;
-`
-
+`;
 
 export default withRouter(ItemForm);

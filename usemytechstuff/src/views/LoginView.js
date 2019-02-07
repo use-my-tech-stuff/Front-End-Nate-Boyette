@@ -26,11 +26,23 @@ class LoginView extends React.Component {
     // console.log(this.state);
   };
 
-  loginHandler = (e) => {
+    loginHandler = (e) => {
     e.preventDefault();
-    this.props.history.push(`/item-list`);
+    console.log(this.props.isLoggedIn)
     this.props.loginUser(this.state.user);
-    console.log(this.props.history)
+    console.log(this.props.isLoggedIn);
+    
+    setTimeout(() => {
+      if (!this.props.isLoggedIn) {
+        return alert('User Not Found')
+      } else {
+        
+       this.props.history.push(`/item-list`);
+        
+      }
+    }, 3000)
+    
+    
     
   };
 
@@ -49,7 +61,9 @@ class LoginView extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    isLoggedIn: state.userReducer.userStatus.isLoggedIn
+  };
 };
 
 export default connect(
