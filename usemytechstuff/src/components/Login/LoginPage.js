@@ -12,7 +12,7 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     "max-width": "500px",
-    margin: "5% auto"
+    margin: "12% auto 0"
   },
   form: {
     width: "80%",

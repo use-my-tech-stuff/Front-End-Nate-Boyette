@@ -1,64 +1,90 @@
 import React from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from "reactstrap";
 
-import {
-  MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBFormInline,
-  MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem
-} from "mdbreact";
+import { withStyles } from "@material-ui/core/styles";
+import { AppBar, Toolbar, Typography, Button, Grid } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 
-export default class NavBar extends React.Component {
+const styles = {
+  root: {
+    // flexGrow: 1
+    // "margin-bottom": "5%"
+    width: "100%"
+  },
+  navItems: {
+    width: "40%"
+  },
   
-  pushToPage = (e) => {
+};
+
+class NavBar extends React.Component {
+  pushToPage = e => {
     e.preventDefault();
-    const routeTo = !this.props.isLoggedIn ? 'login' : 'item-list'
-    this.props.history.push(`/${routeTo}`)
-  }
-  
+    const routeTo = !this.props.isLoggedIn ? "login" : "item-list";
+    this.props.history.push(`/${routeTo}`);
+  };
 
   render() {
     const userId = localStorage.getItem("userId");
-    
+    const { classes } = this.props;
+
     return (
-      <>
-        <Navbar
-          className="shadow-sm h-75"
-          color="light"
-          light
-          expand="md"
-          sticky="top"
-        >
-          <NavbarBrand href={'#'} onClick={this.pushToPage}>Tech Plum</NavbarBrand>
-          <Nav className="ml-auto" navbar>
-            <NavItem>
-              <Link to="/item-list">View Items</Link>
-            </NavItem>
-            {!userId ? null : (
-              <NavItem onClick={this.props.routeToDashboard}>
-                <NavLink href="">Profile</NavLink>
-              </NavItem>
-            )}
-            {!userId ? null : (
-              <NavItem onClick={this.props.userLogOut}>
-                <Link to={`/login`}>Log Out</Link>
-              </NavItem>
-            )}
-          </Nav>
-        </Navbar>
-      </>
+      <div className={classes.root}>
+        <AppBar position="fixed" color="default">
+          <Toolbar>
+            <Grid
+              container
+              direction="row"
+              alignItems="center"
+              justify="space-between"
+            >
+              <Grid item>
+                <Typography variant="h6" color="inherit">
+                  Tech Plum
+                </Typography>
+              </Grid>
+              <Grid
+                container
+                className={classes.navItems}
+                direction="row"
+                justify="flex-end"
+                wrap="nowrap"
+              >
+                <Grid item>
+                  <Button component={Link} to="/item-list">View Items</Button>
+                </Grid>
+                {!userId ? null : 
+                  <Grid item>
+                    <Button component={Link} to={`/dashboard/${userId}`}>
+                      Profile
+                    </Button>
+                  </Grid>
+                }
+                  
+                
+
+                <Grid item>
+                  {!userId ? (
+                    <Button component={Link} to="/login">
+                      Log In
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={this.props.userLogOut}
+                      component={Link}
+                      to="/login"
+                    >
+                      Log Out
+                    </Button>
+                  )}
+                </Grid>
+              </Grid>
+            </Grid>
+          </Toolbar>
+        </AppBar>
+      </div>
     );
   }
 }
+
+export default withStyles(styles)(NavBar);
