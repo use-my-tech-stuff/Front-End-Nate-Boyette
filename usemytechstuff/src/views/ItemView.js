@@ -12,15 +12,16 @@ class ItemView extends React.Component {
   
   componentDidMount() {
     this.props.getItemById(this.props.match.params.id);
+    
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.itemStatus.itemUpdated !== this.props.itemStatus.itemUpdated) {
+    if (prevProps.itemStatus.isRentingItem !== this.props.itemStatus.isRentingItem) {
       this.props.getItemById(this.props.match.params.id)
-      console.log('CDU IF FIRED')
+      // console.log('CDU IF FIRED')
     }
-    this.props.getItemById(this.props.match.params.id);
-    console.log("CDU FIRED")
+  
+    // console.log("CDU FIRED")
   }
 
   rentItem = () => {
@@ -36,13 +37,13 @@ class ItemView extends React.Component {
 
     // console.log('RENTED ITEM', rentedItem)
     this.props.rentItem(this.props.item.itemId, rentedItem)
-    window.location.reload();
+    // window.location.reload();
     // this.props.getItemById(this.props.match.params.id);
   };
   
   
   render() {
-    // console.log(this.props.item);
+    console.log('USER',this.props.user);
 
     return (
       <div>

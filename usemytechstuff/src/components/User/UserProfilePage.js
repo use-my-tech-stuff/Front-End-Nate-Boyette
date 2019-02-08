@@ -39,7 +39,7 @@ const UserProfilePage = props => {
 
   console.log('RENTED ITEMS', rentedItems.length)
   
-  return (
+  return !props.items ? <h1>Loading...</h1> :  (
     <>
       <UserPageContainer>
         <Card className="text-left">
@@ -53,9 +53,9 @@ const UserProfilePage = props => {
               <JustInfoContainer>
                 <CardText>
                   Items For Rent:{" "}
-                  {props.items.length !== 0 ? props.items.length : ""}
+                  {props.items.length}
                 </CardText>
-                <CardText>Items Renting: {rentedItems && rentedItems.length !== 0 ? rentedItems.length : ""}</CardText>
+                <CardText>Items Renting: {rentedItems.length }</CardText>
                 <ButtonContainer>
                   <Button size="sm" onClick={routeToFormPage}>
                     Add Item

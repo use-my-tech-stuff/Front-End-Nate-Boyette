@@ -47,7 +47,7 @@ class LoginView extends React.Component {
         if (this.props.isLoggedIn) {
           this.props.history.push(`/item-list`);
         }
-      }, 1000);
+      }, 2000);
        
 
       // if (this.props.loginFailed)

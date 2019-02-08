@@ -48,8 +48,8 @@ class Item extends React.Component {
         <Card>
           <CardBody>
             <ItemProfileHeaderCont>
-              <ProfileImage src={faker.image.avatar()} />
-              <CardTitle>{this.props.user.username || 'Loading...' }</CardTitle>
+              <ProfileImage src={this.props.user.thumbnail} />
+              <CardTitle>{this.props.user.username}</CardTitle>
             </ItemProfileHeaderCont>
           </CardBody>
           <CardImg

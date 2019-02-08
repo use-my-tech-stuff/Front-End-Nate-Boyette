@@ -21,6 +21,8 @@ class ItemFormView extends React.Component {
     },
     editItem: {},
     isEditing: false,
+    isUploading: false,
+    itemUploaded: false,
     selectedFile: ""
   };
 
@@ -61,6 +63,10 @@ class ItemFormView extends React.Component {
     fd.append("image", this.state.selectedFile);
 
     // console.log("firing");
+      this.setState({
+        isUploading: true,
+        itemUploaded: false
+      })
 
     axios
       .post("https://use-my-tech-stuff.herokuapp.com/api/items/upload", fd)
@@ -70,7 +76,9 @@ class ItemFormView extends React.Component {
           item: {
             ...this.state.item,
             imgUrl: res.data.image
-          }
+          },
+          isUploading: false,
+          itemUploaded: true,
         });
       })
       .catch(err => console.log(err));
@@ -132,6 +140,8 @@ class ItemFormView extends React.Component {
         isEditing={this.state.isEditing}
         fileHandler={this.fileHandler}
         uploadImage={this.uploadImage}
+        isUploading={this.state.isUploading}
+        itemUploaded={this.state.itemUploaded}
       />
     );
   }
@@ -140,7 +150,8 @@ class ItemFormView extends React.Component {
 const mapStateToProps = state => {
   return {
     itemData: state.itemReducer.items,
-    dataLength: state.itemReducer.items.length
+    dataLength: state.itemReducer.items.length,
+   
   };
 };
 

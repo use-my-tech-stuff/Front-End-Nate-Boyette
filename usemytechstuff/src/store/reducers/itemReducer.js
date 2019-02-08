@@ -168,7 +168,8 @@ const itemReducer = (state = initialState, action) => {
         ...state,
         itemStatus: {
           ...state.itemStatus,
-          isUpdatingItem: true
+          isUpdatingItem: true,
+          itemUpdated: false
         },
         error: action.payload
       };

@@ -126,6 +126,8 @@ const ItemForm = props => {
               onChange={props.fileHandler}
             />
             <Button onClick={(e) => props.uploadImage(e)}>Upload</Button>
+            {props.isUploading ? <h3>Uploading Image...</h3> : null}
+            {props.itemUploaded ? <h3>Image Uploaded Successfully</h3> : null}
             <FormText color="muted" className="text-left">
               Upload an image of your item.
             </FormText>
