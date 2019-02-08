@@ -10,7 +10,7 @@ import ItemFormView from "./views/ItemFormView"
 import RegisterView from "./views/RegisterView"
 import UserProfileView from "./views/UserProfileView"
 import NavBarView from "./views/NavBarView"
-
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 import "./App.css";
@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
+        <CssBaseline />
         <NavBarView />
         <Route exact path="/" component={HomeView} />
         <Route
