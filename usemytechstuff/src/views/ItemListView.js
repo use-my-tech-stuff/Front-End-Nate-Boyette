@@ -7,6 +7,8 @@ import ItemList from "../components/ItemList/ItemList";
 
 import styled from "styled-components";
 
+import Typography from "@material-ui/core/Typography";
+
 class ItemListView extends React.Component {
   componentDidMount() {
     // Conditionally call functions based on match
@@ -25,9 +27,17 @@ class ItemListView extends React.Component {
     // console.log(this.props.items);
 
     return (
-      <>
-        <h1>Item List</h1>
-        { this.props.itemStatus.isFetchingItems ? <h1>Loading Data</h1> :
+      <ItemListPageContainer>
+        {this.props.itemStatus.isFetchingItems ? (
+          <Typography variant="h2" align="center">
+            Loading Data
+          </Typography>
+        ) : (
+          <Typography variant="h2" align="center">
+            Item List
+          </Typography>
+        )}
+        {this.props.itemStatus.isFetchingItems ? null : (
           <ItemListContainer>
             <ItemList
               history={this.props.history}
@@ -38,8 +48,8 @@ class ItemListView extends React.Component {
               itemStatus={this.props.itemStatus}
             />
           </ItemListContainer>
-        }
-      </>
+        )}
+      </ItemListPageContainer>
     );
   }
 }
@@ -58,11 +68,15 @@ const mapStateToProps = state => {
 ==== Component Styles ====
 */
 
+const ItemListPageContainer = styled.div`
+  margin-top: 10%;
+`
+
 const ItemListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  width: 60%;
+  justify-content: space-between;
+  width: 80%;
   margin: 2% auto;
 `;
 
