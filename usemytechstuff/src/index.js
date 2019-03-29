@@ -1,5 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import axios from "axios"
+
+// import "bootstrap/dist/css/bootstrap.css";
+
 
 import "./index.css";
 
@@ -7,12 +11,14 @@ import "./index.css";
 import App from "./App";
 
 // Imported Dependencies
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import axios from "axios";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk"
 import logger from "redux-logger"
+
+
 
 import rootReducer from "./store/reducers"
 
